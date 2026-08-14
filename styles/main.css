@@ -1,8 +1,8 @@
 :root {
-  --navy: #18324a;
-  --navy-dark: #0d2133;
-  --bronze: #9b6025;
-  --bronze-light: #d49a5b;
+  --navy: #123c69;
+  --navy-dark: #071526;
+  --bronze: #087e8b;
+  --bronze-light: #55d6c2;
   --sand: #d8c3a5;
   --ivory: #f7f4ee;
   --white: #ffffff;
@@ -27,7 +27,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible
 .brand-logo { width: 64px; height: 64px; object-fit: contain; filter: brightness(0) saturate(100%) invert(94%) sepia(10%) saturate(378%) hue-rotate(344deg) brightness(104%) contrast(94%); }
 .brand-copy { display: flex; flex-direction: column; font-size: .67rem; line-height: 1.15; }
 .brand-copy strong { font-size: .9rem; }
-.brand-copy::after { margin-top: .28rem; color: var(--bronze-light); content: "California Contractor"; font-size: .52rem; letter-spacing: .11em; }
+.brand-copy::after { margin-top: .28rem; color: var(--bronze-light); content: "Digital Solutions"; font-size: .52rem; letter-spacing: .11em; }
+.apex-mark { display:grid; width:48px; height:48px; place-items:center; color:var(--navy-dark); background:var(--bronze-light); clip-path:polygon(50% 0,100% 100%,78% 100%,66% 75%,34% 75%,22% 100%,0 100%); padding-top:.7rem; font:800 1.2rem Montserrat,sans-serif; }
 .menu-button { display: none; align-items: center; gap: .55rem; min-width: 44px; min-height: 44px; padding: .7rem; color: var(--white); background: transparent; border: 1px solid rgb(255 255 255 / 40%); font: 700 .8rem Montserrat, sans-serif; text-transform: uppercase; cursor: pointer; }
 .js .menu-button { display: inline-flex; }
 .menu-icon, .menu-icon::before, .menu-icon::after { display: block; width: 20px; height: 2px; background: currentColor; content: ""; }
@@ -76,6 +77,9 @@ h2 { margin: 0; color: var(--navy); font: 700 clamp(2rem, 5vw, 3.5rem)/1.08 Mont
 .card-link { margin-top: .5rem; font-weight: 700; }
 .service-card:hover img, .service-card:focus-visible img { transform: scale(1.045); }
 .featured-work { display: grid; gap: 2rem; padding-block: 6rem; align-items: center; }
+.service-detail ul { padding-left:1.25rem; }
+.service-detail li { margin-block:.55rem; }
+.service-nav { display:flex; position:static; width:auto; box-shadow:none; }
 .featured-media { display: grid; gap: 1.5rem; }
 .featured-image { position: relative; box-shadow: var(--shadow); }
 .featured-image img { aspect-ratio: 4 / 3; object-fit: cover; }

@@ -1,31 +1,12 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://highdesertdevelopment.com/</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/about.html</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/web-applications.html</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/website-design.html</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/contact.html</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/custom-software.html</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/custom-websites.html</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/website-redesigns.html</loc>
-  </url>
-  <url>
-    <loc>https://highdesertdevelopment.com/hosting-security.html</loc>
-  </url>
+  <url><loc>https://apexcodeworks.com/</loc></url>
+  <url><loc>https://apexcodeworks.com/about.html</loc></url>
+  <url><loc>https://apexcodeworks.com/contact.html</loc></url>
+  <url><loc>https://apexcodeworks.com/custom-websites.html</loc></url>
+  <url><loc>https://apexcodeworks.com/web-applications.html</loc></url>
+  <url><loc>https://apexcodeworks.com/custom-software.html</loc></url>
+  <url><loc>https://apexcodeworks.com/website-design.html</loc></url>
+  <url><loc>https://apexcodeworks.com/website-redesigns.html</loc></url>
+  <url><loc>https://apexcodeworks.com/hosting-security.html</loc></url>
 </urlset>
-

@@ -12,6 +12,7 @@ const videoDialogClose = document.querySelector('.video-dialog-close');
 const videoExpandButtons = document.querySelectorAll('.video-expand');
 
 function setMenuState(isOpen) {
+  if (!navigation || !menuButton) return;
   navigation.classList.toggle('open', isOpen);
   menuButton.setAttribute('aria-expanded', `${isOpen}`);
   menuButton.querySelector('.menu-label').textContent = `${isOpen ? 'Close' : 'Menu'}`;
@@ -30,7 +31,7 @@ function rememberService(category) {
     category,
     viewedAt: new Date().toISOString()
   };
-  localStorage.setItem('hddLastService', JSON.stringify(visit));
+  localStorage.setItem('apexLastService', JSON.stringify(visit));
 }
 
 function updateCurrentDateTime() {
@@ -99,13 +100,13 @@ if (videoDialog && videoDialogPlayer && videoDialogTitle && videoDialogClose) {
 }
 
 if (projectForm) {
-  const savedService = JSON.parse(localStorage.getItem('hddLastService'))?.category;
+  const savedService = JSON.parse(localStorage.getItem('apexLastService'))?.category;
   const serviceSelect = projectForm.querySelector('#service');
   const formMessage = projectForm.querySelector('#form-message');
   const submissionSent = new URLSearchParams(window.location.search).get('sent') === 'true';
 
   if (submissionSent) {
-    formMessage.textContent = `Thank you. Your project inquiry has been emailed to High Desert Development.`;
+    formMessage.textContent = `Thank you. Your project inquiry has been sent to Apex Code Works.`;
   }
 
   if (savedService && [...serviceSelect.options].some((option) => option.value === savedService)) {
@@ -113,12 +114,16 @@ if (projectForm) {
   }
 
   projectForm.addEventListener('submit', (event) => {
+    if (projectForm.getAttribute('action') === '#') event.preventDefault();
     const formData = new FormData(projectForm);
     const inquiry = Object.fromEntries(formData.entries());
-    localStorage.setItem('hddProjectInquiry', JSON.stringify(inquiry));
-    formMessage.textContent = `Sending your project inquiry to High Desert Development…`;
+    localStorage.setItem('apexProjectInquiry', JSON.stringify(inquiry));
+    formMessage.textContent = projectForm.getAttribute('action') === '#'
+      ? `Thank you. The form layout is working and is ready to connect to an email service.`
+      : `Sending your project inquiry to Apex Code Works…`;
   });
 }
 
 updateCurrentDateTime();
 setInterval(updateCurrentDateTime, 1000);
+document.querySelectorAll('.current-year').forEach((element) => { element.textContent = new Date().getFullYear(); });

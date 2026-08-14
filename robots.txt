@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://highdesertdevelopment.com/sitemap.xml
+Sitemap: https://apexcodeworks.com/sitemap.xml
