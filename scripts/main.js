@@ -100,28 +100,18 @@ if (videoDialog && videoDialogPlayer && videoDialogTitle && videoDialogClose) {
 }
 
 if (projectForm) {
-  const savedService = JSON.parse(localStorage.getItem('apexLastService'))?.category;
   const serviceSelect = projectForm.querySelector('#service');
-  const formMessage = projectForm.querySelector('#form-message');
-  const submissionSent = new URLSearchParams(window.location.search).get('sent') === 'true';
-
-  if (submissionSent) {
-    formMessage.textContent = `Thank you. Your project inquiry has been sent to Apex Code Works.`;
+  // Service preferences are optional; blocked storage must never prevent submission.
+  try {
+    const savedService = JSON.parse(localStorage.getItem('apexLastService'))?.category;
+    if (savedService && [...serviceSelect.options].some((option) => option.value === savedService)) {
+      serviceSelect.value = savedService;
+    }
+  } catch {
+    // Continue with the default service when storage is unavailable or malformed.
   }
-
-  if (savedService && [...serviceSelect.options].some((option) => option.value === savedService)) {
-    serviceSelect.value = savedService;
-  }
-
-  projectForm.addEventListener('submit', (event) => {
-    if (projectForm.getAttribute('action') === '#') event.preventDefault();
-    const formData = new FormData(projectForm);
-    const inquiry = Object.fromEntries(formData.entries());
-    localStorage.setItem('apexProjectInquiry', JSON.stringify(inquiry));
-    formMessage.textContent = projectForm.getAttribute('action') === '#'
-      ? `Thank you. The form layout is working and is ready to connect to an email service.`
-      : `Sending your project inquiry to Apex Code Works…`;
-  });
+  // Native POST supports browser validation and works without JavaScript.
+  // FormSubmit handles verification and confirms processing on its own page.
 }
 
 updateCurrentDateTime();
