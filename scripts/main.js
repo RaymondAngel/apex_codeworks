@@ -99,6 +99,16 @@ if (videoDialog && videoDialogPlayer && videoDialogTitle && videoDialogClose) {
   });
 }
 
+// Accept US-style numbers, optional dollar signs, and an optional ascending range.
+function isValidUsdBudget(value) {
+  const budget = value.trim();
+  if (!budget) return true;
+  const amount = String.raw`\$?\s*(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d{1,2})?`;
+  const pattern = new RegExp(String.raw`^${amount}(?:\s*[-–—]\s*${amount})?$`);
+  if (!pattern.test(budget)) return false;
+  const numbers = budget.split(/[-–—]/).map((part) => Number(part.replace(/[$,\s]/g, '')));
+  return numbers.every(Number.isFinite) && (numbers.length === 1 || numbers[0] <= numbers[1]);
+}
 if (projectForm) {
   const serviceSelect = projectForm.querySelector('#service');
   // Service preferences are optional; blocked storage must never prevent submission.
@@ -110,8 +120,76 @@ if (projectForm) {
   } catch {
     // Continue with the default service when storage is unavailable or malformed.
   }
-  // Native POST supports browser validation and works without JavaScript.
-  // FormSubmit handles verification and confirms processing on its own page.
+  const submitButton = projectForm.querySelector('[type="submit"]');
+  const formMessage = projectForm.querySelector('#form-message');
+  const confirmation = document.querySelector('#inquiry-confirmation');
+  const confirmationNumber = document.querySelector('#confirmation-number');
+  const budgetInput = projectForm.querySelector('#budget');
+  const budgetError = document.querySelector('#budget-error');
+  function validateBudget() {
+    const valid = isValidUsdBudget(budgetInput.value);
+    budgetInput.setAttribute('aria-invalid', String(!valid));
+    if (!valid && !budgetError.open) budgetError.showModal();
+    return valid;
+  }
+  budgetError.querySelector('.confirmation-close').addEventListener('click', () => budgetError.close());
+  budgetError.addEventListener('close', () => budgetInput.focus());
+  budgetInput.addEventListener('blur', validateBudget);
+  budgetInput.addEventListener('input', () => budgetInput.removeAttribute('aria-invalid'));
+  let sending = false;
+  let inquiryReference = null;
+
+  confirmation.querySelector('.confirmation-close').addEventListener('click', () => confirmation.close());
+  confirmation.addEventListener('close', () => submitButton.focus());
+  // Keep the modal open until the customer clicks its clearly labeled X.
+  confirmation.addEventListener('cancel', (event) => event.preventDefault());
+
+  projectForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (sending || !validateBudget() || !projectForm.reportValidity()) return;
+    sending = true;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending inquiry...';
+    formMessage.textContent = 'Sending your inquiry. Please keep this page open.';
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30000);
+
+    try {
+      if (!inquiryReference) {
+        const random = crypto.getRandomValues(new Uint8Array(12));
+        inquiryReference = `ACW-${Array.from(random, (byte) => byte.toString(16).padStart(2, '0')).join('').toUpperCase()}`;
+      }
+      const payload = Object.fromEntries(new FormData(projectForm));
+      payload.budget = budgetInput.value.trim() ? `${budgetInput.value.trim()} USD` : 'Not specified';
+      payload.confirmation_number = inquiryReference;
+      payload._subject = `Apex Code Works inquiry [${inquiryReference}]`;
+      const response = await fetch(projectForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+        signal: controller.signal
+      });
+      const result = await response.json();
+      if (!response.ok || !(result.success === true || result.success === 'true')) {
+        throw new Error('Submission was not accepted');
+      }
+      confirmationNumber.textContent = inquiryReference;
+      formMessage.textContent = `Inquiry sent. Your confirmation number is ${inquiryReference}.`;
+      projectForm.reset();
+      inquiryReference = null;
+      confirmation.showModal();
+    } catch {
+      // A connection failure can happen after acceptance; retain the same reference on retry.
+      const reference = inquiryReference ? ` Reference: ${inquiryReference}.` : '';
+      formMessage.textContent = `We could not confirm your submission.${reference} Your entries are still here. Please try again, or email Raymond.Angel.Developer@gmail.com or call 661-646-3424 and include this reference if shown.`;
+    } finally {
+      clearTimeout(timeout);
+      sending = false;
+      submitButton.disabled = false;
+      submitButton.textContent = 'Send project inquiry';
+    }
+  });
+  submitButton.disabled = false;
 }
 
 updateCurrentDateTime();

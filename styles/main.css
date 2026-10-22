@@ -212,3 +212,11 @@ h2 { margin: 0; color: var(--navy); font: 700 clamp(2rem, 5vw, 3.5rem)/1.08 Mont
   html { scroll-behavior: auto; }
   .service-card img { transition: none; }
 }
+
+.inquiry-confirmation { position: fixed; width: min(92vw, 480px); max-height: 90vh; overflow: auto; padding: 3.5rem 1.5rem 1.5rem; border: 0; color: var(--charcoal); background: var(--white); box-shadow: var(--shadow); }
+.inquiry-confirmation::backdrop { background: rgb(4 13 21 / 78%); }
+.inquiry-confirmation h2 { font-size: 1.8rem; }
+.confirmation-close { position: absolute; top: .5rem; right: .5rem; width: 44px; height: 44px; border: 0; background: var(--navy); color: var(--white); font-size: 1.8rem; cursor: pointer; }
+.confirmation-label { margin-bottom: .4rem; font-weight: 700; }
+.confirmation-number { margin-top: 0; padding: 1rem; background: var(--ivory); color: var(--navy); font-family: monospace; font-size: 1.1rem; overflow-wrap: anywhere; user-select: all; }
+.project-form button:disabled { opacity: .65; cursor: wait; }

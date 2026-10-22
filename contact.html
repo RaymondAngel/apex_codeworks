@@ -33,11 +33,24 @@
         <h2 id="project-form-title">Project inquiry</h2><p id="required-note" class="required-note">Fields marked with an asterisk (*) are required.</p>
         <div class="form-grid two-column"><div class="form-field"><label for="name">Name or company *</label><input id="name" name="name" type="text" autocomplete="name" required></div><div class="form-field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div></div>
         <div class="form-grid two-column"><div class="form-field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div><div class="form-field"><label for="service">Service needed *</label><select id="service" name="service" required><option value="">Select a service</option><option value="Custom Websites">Custom website</option><option value="Website Design">Website design</option><option value="Website Redesigns">Website redesign</option><option value="Web Applications">Web application</option><option value="Custom Software">Custom software</option><option value="Hosting & Security">Hosting and security</option><option value="Other">Other or not sure</option></select></div></div>
-        <div class="form-grid"><div class="form-field"><label for="budget">Estimated budget or range</label><input id="budget" name="budget" type="text" placeholder="Optional"></div><div class="form-field"><label for="details">Tell us about your project *</label><textarea id="details" name="details" required placeholder="What would you like to build, and what should it help you accomplish?"></textarea></div></div>
-        <button class="button button-primary" type="submit">Send project inquiry</button>
-        <p class="required-note">Your inquiry is processed by FormSubmit and emailed to Apex Code Works. Complete the verification step after submitting. If you cannot submit the form, email <a href="mailto:Raymond.Angel.Developer@gmail.com">Raymond.Angel.Developer@gmail.com</a> or call <a href="tel:+16616463424">661-646-3424</a>.</p><p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        <div class="form-grid"><div class="form-field"><label for="budget">Estimated budget or range (US dollars / USD)</label><input id="budget" name="budget" type="text" placeholder="e.g. $5,000 or 5,000 - 10,000" aria-describedby="budget-help"><p id="budget-help" class="required-note">Optional. US dollars only. Dollar signs and commas are accepted: 5000, $5,000, or $5,000 - $10,000. Cents may use a decimal point, such as $5,000.50.</p></div><div class="form-field"><label for="details">Tell us about your project *</label><textarea id="details" name="details" required placeholder="What would you like to build, and what should it help you accomplish?"></textarea></div></div>
+        <button class="button button-primary" type="submit" disabled>Send project inquiry</button><noscript><p>Please enable JavaScript to submit an inquiry and receive a confirmation number, or contact us by email or phone.</p></noscript>
+        <p class="required-note">Your inquiry is processed by FormSubmit and emailed to Apex Code Works. After sending, you will receive a confirmation number. Save it for any follow-up questions. If you cannot submit the form, email <a href="mailto:Raymond.Angel.Developer@gmail.com">Raymond.Angel.Developer@gmail.com</a> or call <a href="tel:+16616463424">661-646-3424</a>.</p><p id="form-message" class="form-message" role="status" aria-live="polite"></p>
       </form>
     </section>
+    <dialog id="budget-error" class="inquiry-confirmation" aria-labelledby="budget-error-title" aria-describedby="budget-error-description">
+      <button type="button" class="confirmation-close" aria-label="Close budget message">&times;</button>
+      <h2 id="budget-error-title">Enter your budget in US dollars</h2>
+      <p id="budget-error-description">Please enter an amount or range in US dollars (USD) only. You may include or leave out the dollar sign and commas, for example: 5000, $5,000, or $5,000 - $10,000. Use a decimal point for cents. Other currencies are not accepted. For a range, enter the lower amount first. You can also leave this optional field blank.</p>
+    </dialog>
+    <dialog id="inquiry-confirmation" class="inquiry-confirmation" aria-labelledby="confirmation-title" aria-describedby="confirmation-description">
+      <button type="button" class="confirmation-close" aria-label="Close confirmation">&times;</button>
+      <h2 id="confirmation-title">Inquiry sent</h2>
+      <p id="confirmation-description">Thank you for contacting Apex Code Works. Your inquiry has been submitted. Please save your confirmation number and include it when following up.</p>
+      <p class="confirmation-label">Your confirmation number</p>
+      <p id="confirmation-number" class="confirmation-number"></p>
+      <p>We will respond within two business days.</p>
+    </dialog>
   </main>
   <footer class="site-footer"><div class="section-shell footer-inner"><div><p class="footer-brand">Apex Code Works</p><p class="footer-description">Custom websites, web applications, software, redesigns, and secure hosting built around real business goals.</p></div><nav aria-label="Footer navigation"><a href="index.html#services">Services</a><a href="index.html#process">Process</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="footer-meta"><p>&copy; <span class="current-year">2026</span> Apex Code Works</p></div></div></footer>
 </body>
