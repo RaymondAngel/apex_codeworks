@@ -220,3 +220,11 @@ h2 { margin: 0; color: var(--navy); font: 700 clamp(2rem, 5vw, 3.5rem)/1.08 Mont
 .confirmation-label { margin-bottom: .4rem; font-weight: 700; }
 .confirmation-number { margin-top: 0; padding: 1rem; background: var(--ivory); color: var(--navy); font-family: monospace; font-size: 1.1rem; overflow-wrap: anywhere; user-select: all; }
 .project-form button:disabled { opacity: .65; cursor: wait; }
+.footer-shortcut { width: min(calc(100% - 2rem), var(--max-width)); margin: 1.5rem auto 0; padding: 1.5rem 0; border-top: 1px solid rgb(255 255 255 / 25%); display: flex; align-items: center; gap: 1rem; }
+.footer-shortcut img { width: 56px; height: 56px; flex-shrink: 0; border-radius: 12px; }
+.footer-shortcut a { color: var(--bronze-light); font-weight: 700; }
+.footer-shortcut p { margin: .3rem 0 0; font-size: .9rem; }
+.shortcut-guide { max-width: 850px; padding-block: 3rem; }
+.shortcut-preview { width: 96px; height: 96px; border-radius: 20px; margin-bottom: 1.5rem; }
+.shortcut-card { margin-block: 1.5rem; padding: 1.5rem; background: var(--white); box-shadow: var(--shadow); }
+.shortcut-card h3 { margin-top: 0; color: var(--navy); }
