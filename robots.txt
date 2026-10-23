@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://apexcodeworks.com/sitemap.xml
+Sitemap: https://raymondangel.github.io/apex_codeworks/sitemap.xml
