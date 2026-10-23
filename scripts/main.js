@@ -122,6 +122,24 @@ if (projectForm) {
   }
   const submitButton = projectForm.querySelector('[type="submit"]');
   const formMessage = projectForm.querySelector('#form-message');
+  const emailInput = projectForm.querySelector('#email');
+  const emailError = projectForm.querySelector('#email-error');
+  function showEmailError() {
+    const message = emailInput.validity.valueMissing
+      ? 'Please enter your email address.'
+      : emailInput.validity.typeMismatch
+        ? 'Please enter a valid email address, such as name@example.com.'
+        : '';
+    emailError.textContent = message;
+    emailInput.setAttribute('aria-invalid', String(Boolean(message)));
+  }
+  emailInput.addEventListener('invalid', showEmailError);
+  emailInput.addEventListener('blur', () => {
+    if (emailInput.value || emailInput.getAttribute('aria-invalid') === 'true') showEmailError();
+  });
+  emailInput.addEventListener('input', () => {
+    if (emailInput.getAttribute('aria-invalid') === 'true') showEmailError();
+  });
   const confirmation = document.querySelector('#inquiry-confirmation');
   const confirmationNumber = document.querySelector('#confirmation-number');
   const budgetInput = projectForm.querySelector('#budget');
@@ -147,6 +165,8 @@ if (projectForm) {
   window.addEventListener('pageshow', (event) => {
     if (!event.persisted) return;
     projectForm.reset();
+    emailError.textContent = '';
+    emailInput.removeAttribute('aria-invalid');
     formMessage.textContent = '';
     confirmationNumber.textContent = '';
     if (confirmation.open) confirmation.close();
@@ -167,9 +187,9 @@ if (projectForm) {
     sending = true;
     submitButton.disabled = true;
     submitButton.textContent = 'Sending inquiry...';
-    formMessage.textContent = 'Sending your inquiry. Please keep this page open.';
+    formMessage.textContent = 'Sending your inquiry…';
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 30000);
+    const timeout = setTimeout(() => controller.abort(), 15000);
 
     try {
       if (!inquiryReference) {
@@ -178,6 +198,7 @@ if (projectForm) {
       }
       const payload = Object.fromEntries(new FormData(projectForm));
       payload.budget = budgetInput.value.trim() ? `${budgetInput.value.trim()} USD` : 'Not specified';
+      payload.details = payload.details.trim() || 'Not specified';
       payload.confirmation_number = inquiryReference;
       payload._subject = `Apex Code Works inquiry [${inquiryReference}]`;
       const response = await fetch(projectForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
@@ -186,19 +207,33 @@ if (projectForm) {
         body: JSON.stringify(payload),
         signal: controller.signal
       });
+      if (!response.ok) {
+        throw new Error(response.status === 429 ? 'rate-limit' : 'service-error');
+      }
       const result = await response.json();
-      if (!response.ok || !(result.success === true || result.success === 'true')) {
-        throw new Error('Submission was not accepted');
+      if (!(result.success === true || result.success === 'true')) {
+        throw new Error('not-accepted');
       }
       confirmationNumber.textContent = inquiryReference;
       formMessage.textContent = `Inquiry sent. Your confirmation number is ${inquiryReference}.`;
       projectForm.reset();
+      emailError.textContent = '';
+      emailInput.removeAttribute('aria-invalid');
       inquiryReference = null;
       confirmation.showModal();
-    } catch {
+    } catch (error) {
       // A connection failure can happen after acceptance; retain the same reference on retry.
       const reference = inquiryReference ? ` Reference: ${inquiryReference}.` : '';
-      formMessage.textContent = `We could not confirm your submission.${reference} Your entries are still here. Please try again, or email Raymond.Angel.Developer@gmail.com or call 661-646-3424 and include this reference if shown.`;
+      const reason = error.name === 'AbortError'
+        ? 'The email service is taking too long to respond.'
+        : error.message === 'rate-limit'
+          ? 'The email service is receiving too many requests. Please wait a few minutes before retrying.'
+          : error.message === 'not-accepted'
+            ? 'The email service did not accept this inquiry.'
+            : error.message === 'service-error'
+              ? 'The email service returned an error.'
+              : 'The connection to the email service could not be completed.';
+      formMessage.textContent = `${reason} We could not confirm your submission.${reference} Your entries are still here. Please try again, or email Raymond.Angel.Developer@gmail.com or call 661-646-3424 and include this reference if shown.`;
     } finally {
       clearTimeout(timeout);
       sending = false;
