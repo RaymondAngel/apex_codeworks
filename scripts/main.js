@@ -139,6 +139,23 @@ if (projectForm) {
   let sending = false;
   let inquiryReference = null;
 
+  // START CONTACT PAGE RESET ON RETURN
+  // Clears the previous inquiry confirmation message and number, closes dialogs,
+  // and resets the form when a visitor leaves and returns via browser Back/Forward.
+  // Browsers can restore the previous page from their back/forward cache;
+  // event.persisted identifies that restored page. A fresh page load starts clean.
+  window.addEventListener('pageshow', (event) => {
+    if (!event.persisted) return;
+    projectForm.reset();
+    formMessage.textContent = '';
+    confirmationNumber.textContent = '';
+    if (confirmation.open) confirmation.close();
+    if (budgetError.open) budgetError.close();
+    budgetInput.removeAttribute('aria-invalid');
+    if (!sending) inquiryReference = null;
+  });
+  // END CONTACT PAGE RESET ON RETURN
+
   confirmation.querySelector('.confirmation-close').addEventListener('click', () => confirmation.close());
   confirmation.addEventListener('close', () => submitButton.focus());
   // Keep the modal open until the customer clicks its clearly labeled X.
