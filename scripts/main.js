@@ -189,7 +189,11 @@ if (projectForm) {
     submitButton.textContent = 'Sending inquiry...';
     formMessage.textContent = 'Sending your inquiry…';
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
+    const progressUpdate = setTimeout(() => {
+      formMessage.textContent = 'Still waiting for the email service to confirm your inquiry. Your entries are preserved.';
+    }, 8000);
+    const timeout = setTimeout(() => controller.abort(), 30000);
+    let receivedResponse = false;
 
     try {
       if (!inquiryReference) {
@@ -203,10 +207,12 @@ if (projectForm) {
       payload._subject = `Apex Code Works inquiry [${inquiryReference}]`;
       const response = await fetch(projectForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify(payload),
+        // Standard form encoding avoids the cross-origin JSON preflight request.
+        headers: { Accept: 'application/json' },
+        body: new URLSearchParams(payload),
         signal: controller.signal
       });
+      receivedResponse = true;
       if (!response.ok) {
         throw new Error(response.status === 429 ? 'rate-limit' : 'service-error');
       }
@@ -224,6 +230,12 @@ if (projectForm) {
     } catch (error) {
       // A connection failure can happen after acceptance; retain the same reference on retry.
       const reference = inquiryReference ? ` Reference: ${inquiryReference}.` : '';
+      const diagnostic = error.name === 'AbortError'
+        ? receivedResponse ? 'TIMEOUT-READING-RESPONSE' : 'TIMEOUT-WAITING-FOR-RESPONSE'
+        : error.message === 'rate-limit' ? 'RATE-LIMIT'
+          : error.message === 'not-accepted' ? 'NOT-ACCEPTED'
+            : error.message === 'service-error' ? 'SERVICE-ERROR'
+              : receivedResponse ? 'INVALID-RESPONSE' : 'CONNECTION-ERROR';
       const reason = error.name === 'AbortError'
         ? 'The email service is taking too long to respond.'
         : error.message === 'rate-limit'
@@ -233,9 +245,10 @@ if (projectForm) {
             : error.message === 'service-error'
               ? 'The email service returned an error.'
               : 'The connection to the email service could not be completed.';
-      formMessage.textContent = `${reason} We could not confirm your submission.${reference} Your entries are still here. Please try again, or email Raymond.Angel.Developer@gmail.com or call 661-646-3424 and include this reference if shown.`;
+      formMessage.textContent = `${reason} We could not confirm your submission.${reference} Diagnostic: ${diagnostic}. Your entries are still here. It may have been received; check before resending to avoid a duplicate. You can email Raymond.Angel.Developer@gmail.com or call 661-646-3424 and include this reference if shown.`;
     } finally {
       clearTimeout(timeout);
+      clearTimeout(progressUpdate);
       sending = false;
       submitButton.disabled = false;
       submitButton.textContent = 'Send project inquiry';
