@@ -39,12 +39,14 @@
   const root = element("aside", "apex-chat");
   root.id = "apex-chat";
   root.setAttribute("aria-label", "Website navigation chat");
-  const toggle = button("Chat · Site guide", () => setOpen(panel.hidden), "apex-chat-toggle");
+  const toggle = button("", () => setOpen(panel.hidden), "apex-chat-toggle");
+  toggle.setAttribute("aria-label", "Open Apex chat");
+  toggle.title = "Chat with the Apex site guide";
   const robot = element("img", "apex-chat-robot");
   robot.src = new URL("images/chat-robot.svg", base).href;
   robot.alt = "";
-  robot.width = 24;
-  robot.height = 24;
+  robot.width = 18;
+  robot.height = 18;
   toggle.prepend(robot);
   toggle.setAttribute("aria-controls", "apex-chat-panel");
   toggle.setAttribute("aria-expanded", "false");
