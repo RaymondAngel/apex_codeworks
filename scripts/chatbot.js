@@ -45,8 +45,8 @@
   const robot = element("img", "apex-chat-robot");
   robot.src = new URL("images/chat-robot.svg", base).href;
   robot.alt = "";
-  robot.width = 18;
-  robot.height = 18;
+  robot.width = 36;
+  robot.height = 36;
   toggle.prepend(robot);
   toggle.setAttribute("aria-controls", "apex-chat-panel");
   toggle.setAttribute("aria-expanded", "false");
