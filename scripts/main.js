@@ -122,6 +122,8 @@ if (projectForm) {
   }
   const submitButton = projectForm.querySelector('[type="submit"]');
   const formMessage = projectForm.querySelector('#form-message');
+  const emailFallback = projectForm.querySelector('#email-fallback');
+  const emailDraftLink = projectForm.querySelector('#email-draft-link');
   const emailInput = projectForm.querySelector('#email');
   const emailError = projectForm.querySelector('#email-error');
   function showEmailError() {
@@ -157,6 +159,29 @@ if (projectForm) {
   let sending = false;
   let inquiryReference = null;
 
+  // Build the draft at click time so edits after a failed attempt are included.
+  // The visitor reviews and sends it in their email app; this is not delivery confirmation.
+  emailDraftLink.addEventListener('click', () => {
+    const entries = new FormData(projectForm);
+    const subject = inquiryReference
+      ? `Apex Code Works inquiry [${inquiryReference}]`
+      : 'Apex Code Works project inquiry';
+    const body = [
+      ...(inquiryReference ? [`Inquiry reference: ${inquiryReference}`] : []),
+      `Name or company: ${entries.get('name') || ''}`,
+      `Email: ${entries.get('email') || ''}`,
+      `Phone: ${entries.get('phone') || 'Not specified'}`,
+      `Service: ${entries.get('service') || 'Not specified'}`,
+      `Budget (USD): ${String(entries.get('budget') || '').trim() || 'Not specified'}`,
+      '',
+      'Project details:',
+      String(entries.get('details') || ''),
+      '',
+      'Sent by email after the website could not confirm the form submission.'
+    ].join('\r\n');
+    emailDraftLink.href = `mailto:Raymond.Angel.Developer@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+
   // START CONTACT PAGE RESET ON RETURN
   // Clears the previous inquiry confirmation message and number, closes dialogs,
   // and resets the form when a visitor leaves and returns via browser Back/Forward.
@@ -168,6 +193,8 @@ if (projectForm) {
     emailError.textContent = '';
     emailInput.removeAttribute('aria-invalid');
     formMessage.textContent = '';
+    emailFallback.hidden = true;
+    emailDraftLink.href = 'mailto:Raymond.Angel.Developer@gmail.com';
     confirmationNumber.textContent = '';
     if (confirmation.open) confirmation.close();
     if (budgetError.open) budgetError.close();
@@ -204,12 +231,24 @@ if (projectForm) {
       payload.budget = budgetInput.value.trim() ? `${budgetInput.value.trim()} USD` : 'Not specified';
       payload.details = payload.details.trim() || 'Not specified';
       payload.confirmation_number = inquiryReference;
-      payload._subject = `Apex Code Works inquiry [${inquiryReference}]`;
-      const response = await fetch(projectForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+      const usesWeb3Forms = new URL(projectForm.action).hostname === 'api.web3forms.com';
+      const subject = `Apex Code Works inquiry [${inquiryReference}]`;
+      if (usesWeb3Forms) {
+        payload.subject = subject;
+        payload.message = payload.details;
+        delete payload.details;
+      } else {
+        payload._subject = subject;
+      }
+      const endpoint = usesWeb3Forms
+        ? projectForm.action
+        : projectForm.action.replace('formsubmit.co/', 'formsubmit.co/ajax/');
+      const response = await fetch(endpoint, {
         method: 'POST',
-        // Standard form encoding avoids the cross-origin JSON preflight request.
-        headers: { Accept: 'application/json' },
-        body: new URLSearchParams(payload),
+        headers: usesWeb3Forms
+          ? { 'Content-Type': 'application/json', Accept: 'application/json' }
+          : { Accept: 'application/json' },
+        body: usesWeb3Forms ? JSON.stringify(payload) : new URLSearchParams(payload),
         signal: controller.signal
       });
       receivedResponse = true;
@@ -221,6 +260,8 @@ if (projectForm) {
         throw new Error('not-accepted');
       }
       confirmationNumber.textContent = inquiryReference;
+      emailFallback.hidden = true;
+      emailDraftLink.href = 'mailto:Raymond.Angel.Developer@gmail.com';
       formMessage.textContent = `Inquiry sent. Your confirmation number is ${inquiryReference}.`;
       projectForm.reset();
       emailError.textContent = '';
@@ -246,6 +287,7 @@ if (projectForm) {
               ? 'The email service returned an error.'
               : 'The connection to the email service could not be completed.';
       formMessage.textContent = `${reason} We could not confirm your submission.${reference} Diagnostic: ${diagnostic}. Your entries are still here. It may have been received; check before resending to avoid a duplicate. You can email Raymond.Angel.Developer@gmail.com or call 661-646-3424 and include this reference if shown.`;
+      emailFallback.hidden = false;
     } finally {
       clearTimeout(timeout);
       clearTimeout(progressUpdate);

@@ -9,10 +9,10 @@
   <title>Contact a California Website Developer | Apex Code Works</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://formsubmit.co" crossorigin>
+  <link rel="preconnect" href="https://api.web3forms.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css">
-  <script src="scripts/main.js" defer></script>
+  <script src="scripts/main.js?v=web3forms1" defer></script>
 <link rel="icon" href="icons/apex.ico" sizes="any"><link rel="apple-touch-icon" href="icons/apex-180.png"><link rel="manifest" href="site.webmanifest"><meta name="apple-mobile-web-app-title" content="Apex Code Works">
 <link rel="canonical" href="https://apex-code-works.pages.dev/contact">
 <meta property="og:type" content="website">
@@ -36,16 +36,23 @@
         <article class="contact-card"><h3>Availability</h3><p>Monday–Friday</p><p>Remote consultations are available by appointment. We serve California City, Kern County, Los Angeles County, the Antelope Valley, San Francisco, and businesses throughout California. All services are delivered remotely.</p></article>
         <article class="contact-card"><h3>Response time</h3><p>Within two business days</p><p>We’ll reply with follow-up questions or suggested next steps.</p></article>
       </div>
-      <form id="project-form" class="project-form" method="post" action="https://formsubmit.co/Raymond.Angel.Developer@gmail.com" aria-labelledby="project-form-title" aria-describedby="required-note">
-        <input type="hidden" name="_subject" value="New Apex Code Works project inquiry">
-        <input type="hidden" name="_template" value="table">
-        <div class="form-trap" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="_honey" type="text" tabindex="-1" autocomplete="off"></div>
+      <form id="project-form" class="project-form" method="post" action="https://api.web3forms.com/submit" aria-labelledby="project-form-title" aria-describedby="required-note">
+        <input type="hidden" name="access_key" value="44f7b3ac-9871-43cc-a974-190196cb1600">
+        <input type="hidden" name="subject" value="New Apex Code Works project inquiry">
+        <input type="hidden" name="from_name" value="Apex Code Works">
+        <input type="hidden" name="website_url" value="https://apex-code-works.pages.dev/contact">
+        <div class="form-trap" aria-hidden="true"><input name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" aria-label="Leave unchecked"></div>
         <h2 id="project-form-title">Project inquiry</h2><p id="required-note" class="required-note">Fields marked with an asterisk (*) are required.</p>
         <div class="form-grid two-column"><div class="form-field"><label for="name">Name or company <span class="required-marker" aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" pattern=".*\S.*" title="Enter your name or company." required></div><div class="form-field"><label for="email">Email <span class="required-marker" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error" required><p id="email-error" class="field-error" aria-live="polite"></p></div></div>
         <div class="form-grid two-column"><div class="form-field"><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div><div class="form-field"><label for="service">Service needed <span class="required-marker" aria-hidden="true">*</span></label><select id="service" name="service" required><option value="">Select a service</option><option value="Custom Websites">Custom website</option><option value="Website Design">Website design</option><option value="Website Redesigns">Website redesign</option><option value="Web Applications">Web application</option><option value="Custom Software">Custom software</option><option value="Hosting & Security">Hosting and security</option><option value="Other">Other or not sure</option></select></div></div>
         <div class="form-grid"><div class="form-field"><label for="budget">Estimated budget or range (US dollars / USD)</label><input id="budget" name="budget" type="text" placeholder="e.g. $5,000 or 5,000 - 10,000" aria-describedby="budget-help"><p id="budget-help" class="required-note">Optional. US dollars only. Dollar signs and commas are accepted: 5000, $5,000, or $5,000 - $10,000. Cents may use a decimal point, such as $5,000.50.</p></div><div class="form-field"><label for="details">Tell us about your project <span class="required-marker" aria-hidden="true">*</span></label><textarea id="details" name="details" required placeholder="What would you like to build, and what should it help you accomplish?"></textarea></div></div>
         <button class="button button-primary" type="submit" disabled>Send project inquiry</button><noscript><p>Please enable JavaScript to submit an inquiry and receive a confirmation number, or contact us by email or phone.</p></noscript>
-        <p class="required-note">Your inquiry is processed by FormSubmit and emailed to Apex Code Works. After sending, you will receive a confirmation number. Save it for any follow-up questions. If you cannot submit the form, email <a href="mailto:Raymond.Angel.Developer@gmail.com">Raymond.Angel.Developer@gmail.com</a> or call <a href="tel:+16616463424">661-646-3424</a>.</p><p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        <p class="required-note">Your inquiry is processed by Web3Forms and emailed to Apex Code Works. After sending, you will receive a confirmation number. Save it for any follow-up questions. If you cannot submit the form, email <a href="mailto:Raymond.Angel.Developer@gmail.com">Raymond.Angel.Developer@gmail.com</a> or call <a href="tel:+16616463424">661-646-3424</a>.</p><p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+        <div id="email-fallback" hidden>
+          <p>You can send your inquiry directly by email instead. The link below opens your email app with your current entries included. Review the draft and press Send in your email app. If you already sent this inquiry, check before sending again.</p>
+          <a id="email-draft-link" class="button button-primary" href="mailto:Raymond.Angel.Developer@gmail.com">Open email draft</a>
+          <p class="required-note">If no email app opens, copy your entries into an email to Raymond.Angel.Developer@gmail.com. Opening a draft does not send your inquiry.</p>
+        </div>
       </form>
     </section>
     <dialog id="budget-error" class="inquiry-confirmation" aria-labelledby="budget-error-title" aria-describedby="budget-error-description">
