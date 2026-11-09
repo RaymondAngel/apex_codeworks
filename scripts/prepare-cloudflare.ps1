@@ -16,7 +16,7 @@ $utf8 = New-Object System.Text.UTF8Encoding($false)
 
 # Only publish public website assets, excluding Git metadata and working files.
 Get-ChildItem -LiteralPath $root -File | Where-Object {
-    $_.Extension -eq '.html' -or $_.Name -in @('robots.txt', 'sitemap.xml', 'site.webmanifest')
+    $_.Extension -eq '.html' -or $_.Name -in @('_redirects', 'robots.txt', 'sitemap.xml', 'site.webmanifest')
 } | Copy-Item -Destination $output
 foreach ($folder in @('styles', 'scripts', 'images', 'icons', 'downloads')) {
     $destination = Join-Path $output $folder

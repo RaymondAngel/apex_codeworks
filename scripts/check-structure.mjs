@@ -1,6 +1,5 @@
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
-import { fileURLToPath } from 'node:url';
 const root = new URL('../', import.meta.url);
 const files = (await fs.readdir(root)).filter(name => name.endsWith('.html'));
 const voidTags = new Set('area base br col embed hr img input link meta param source track wbr'.split(' '));
@@ -23,11 +22,32 @@ for (const file of files) {
   if (!voidTags.has(name)) stack.push(name);
  }
  assert.equal(stack.length, 0, file + ': unclosed tags ' + stack.join(', '));
- for (const name of ['html','head','body','main','header','footer','title']) assert.equal(counts[name], 1, file + ': expected one ' + name);
+ const standalone = file === '404.html';
+ for (const name of ['html','head','body','main','title', ...(!standalone ? ['header','footer'] : [])]) assert.equal(counts[name], 1, file + ': expected one ' + name);
  assert.equal(h1, 1, file + ': expected one H1');
  for (const ref of refs) assert(ids.has(ref), file + ': unresolved reference ' + ref);
- assert(html.indexOf('<header') < html.indexOf('<main') && html.indexOf('<main') < html.indexOf('<footer'), file + ': landmark order');
- assert.match(html, /href="#main-content"/, file + ': missing skip link');
+ for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+  const link = match[1];
+  if (/^(?:https?:|mailto:|tel:|data:)/.test(link)) continue;
+  const [pathname, fragment] = link.split('#');
+  const clean = pathname.split('?')[0];
+  const target = clean ? new URL(clean === '/' ? 'index.html' : clean.replace(/^\//,''), root) : new URL(file,root);
+  const content = await fs.readFile(target);
+  if (fragment && target.pathname.endsWith('.html')) assert(content.toString().includes(`id="${fragment}"`), file + ': broken anchor ' + link);
+ }
+ if (!standalone) {
+  assert(html.indexOf('<header') < html.indexOf('<main') && html.indexOf('<main') < html.indexOf('<footer'), file + ': landmark order');
+  assert.match(html, /href="#main-content"/, file + ': missing skip link');
+ }
+ const unique = new Set();
+ for (const tag of html.matchAll(/<(?:script|link|meta)\b[^>]*>/gi)) {
+  const value = tag[0];
+  let key;
+  if (/^<script/i.test(value)) key = value.match(/\bsrc="([^"]+)"/)?.[1];
+  else if (/^<link/i.test(value)) key = value.match(/\brel="(?:stylesheet|canonical)"/) && value.match(/\bhref="([^"]+)"/)?.[1];
+  else key = value.match(/\b(?:name|property)="([^"]+)"/)?.[1];
+  if (key) { key = value.match(/^<\w+/)[0] + ':' + key; assert(!unique.has(key), file + ': duplicate resource or metadata ' + key); unique.add(key); }
+ }
  console.log('PASS ' + file + ': tag nesting, landmarks, headings, IDs, and accessibility references');
 }
 const css = await fs.readFile(new URL('styles/main.css', root), 'utf8');

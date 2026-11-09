@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 
 const source = await fs.readFile(new URL('main.js', import.meta.url), 'utf8');
-const contactCode = source.slice(source.indexOf('if (projectForm) {'), source.lastIndexOf('updateCurrentDateTime();'));
+const contactCode = source.slice(source.indexOf('if (projectForm) {'), source.indexOf('\nif (dateTimeElements.length)'));
 
 function element() {
   return {

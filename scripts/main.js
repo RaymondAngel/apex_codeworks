@@ -31,7 +31,11 @@ function rememberService(category) {
     category,
     viewedAt: new Date().toISOString()
   };
-  localStorage.setItem('apexLastService', JSON.stringify(visit));
+  try {
+    localStorage.setItem('apexLastService', JSON.stringify(visit));
+  } catch {
+    // Service links still work when browser storage is unavailable or full.
+  }
 }
 
 function updateCurrentDateTime() {
@@ -299,6 +303,8 @@ if (projectForm) {
   submitButton.disabled = false;
 }
 
-updateCurrentDateTime();
-setInterval(updateCurrentDateTime, 1000);
+if (dateTimeElements.length) {
+  updateCurrentDateTime();
+  setInterval(updateCurrentDateTime, 1000);
+}
 document.querySelectorAll('.current-year').forEach((element) => { element.textContent = new Date().getFullYear(); });
