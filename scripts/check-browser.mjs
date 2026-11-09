@@ -65,7 +65,7 @@ try {
   assert.deepEqual(problems,[],name+': CSS problems');
   console.log(`PASS ${name}: CSS declarations and duplicate rules`);
  }
- for (const width of [375,768,1440]) {
+ for (const width of [375,768,920,1440]) {
   await page.setViewportSize({width,height:900});
   for (const file of pages) {
    const source = await fs.readFile(path.join(root,file),'utf8');

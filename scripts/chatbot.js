@@ -308,7 +308,7 @@
     return bubble;
   }
   function welcome() {
-    const bubble = message("Hi! I can help you explore Apex Code Works services, plan a project, or find contact information. Choose a starting point or type a question below.");
+    const bubble = message("Hi! I can help you explore Apex Code Works California services, plan a project, or find contact information. Choose a starting point or type a question below.");
     for (const id of ["start", "quote", "contact"]) {
       const topic = TOPICS.find(item => item.id === id);
       bubble.append(button(topic.title, () => answer(topic.title, [topic]), "apex-chat-shortcut"));

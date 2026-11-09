@@ -41,7 +41,7 @@ Get-ChildItem -LiteralPath $output -Recurse -File | Where-Object {
 }
 
 # A real 404 prevents unknown URLs from falling back to the homepage (soft 404).
-$notFound = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Page not found | Apex Code Works</title><link rel="stylesheet" href="/styles/main.css"></head><body><main class="section-shell"><h1>Page not found</h1><p>This page could not be found.</p><p><a href="/">Return to Apex Code Works</a></p></main></body></html>'
+$notFound = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Page not found | Apex Code Works California</title><link rel="stylesheet" href="/styles/main.css"></head><body><main class="section-shell"><h1>Page not found</h1><p>This page could not be found.</p><p><a href="/">Return to Apex Code Works California</a></p></main></body></html>'
 [IO.File]::WriteAllText((Join-Path $output '404.html'), $notFound, $utf8)
 [IO.File]::WriteAllText((Join-Path $output '_headers'), "/*`n  X-Content-Type-Options: nosniff`n  Referrer-Policy: strict-origin-when-cross-origin`n", $utf8)
 

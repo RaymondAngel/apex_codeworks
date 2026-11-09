@@ -168,8 +168,8 @@ if (projectForm) {
   emailDraftLink.addEventListener('click', () => {
     const entries = new FormData(projectForm);
     const subject = inquiryReference
-      ? `Apex Code Works inquiry [${inquiryReference}]`
-      : 'Apex Code Works project inquiry';
+      ? `Apex Code Works California inquiry [${inquiryReference}]`
+      : 'Apex Code Works California project inquiry';
     const body = [
       ...(inquiryReference ? [`Inquiry reference: ${inquiryReference}`] : []),
       `Name or company: ${entries.get('name') || ''}`,
@@ -236,7 +236,7 @@ if (projectForm) {
       payload.details = payload.details.trim() || 'Not specified';
       payload.confirmation_number = inquiryReference;
       const usesWeb3Forms = new URL(projectForm.action).hostname === 'api.web3forms.com';
-      const subject = `Apex Code Works inquiry [${inquiryReference}]`;
+      const subject = `Apex Code Works California inquiry [${inquiryReference}]`;
       if (usesWeb3Forms) {
         payload.subject = subject;
         payload.message = payload.details;

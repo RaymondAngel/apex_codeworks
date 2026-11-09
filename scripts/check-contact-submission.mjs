@@ -26,7 +26,7 @@ async function scenario(fetch, provider = 'formsubmit') {
   }));
   if (provider === 'web3forms') {
     fields.set('access_key', 'test-public-form-key');
-    fields.set('from_name', 'Apex Code Works');
+    fields.set('from_name', 'Apex Code Works California');
   }
   const nodes = new Map();
   const get = selector => {

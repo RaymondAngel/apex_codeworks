@@ -1,23 +1,23 @@
 LINKEDIN PROFILE UPDATE REVIEW
 
 Headline
-Software Developer | Websites, Custom Software & API Integration | Founder, Apex Code Works
+Software Developer | Websites, Custom Software & API Integration | Founder, Apex Code Works California
 
 Contact website
 https://apex-code-works.pages.dev/
 
 Featured cards
-1. Apex Code Works — Websites & Custom Software
+1. Apex Code Works California — Websites & Custom Software
 Custom websites, web applications and software built around real business goals. Explore https://apex-code-works.pages.dev/
 Image: apex-cloudflare-ad.png
 2. Wall Street Watchers — Research Organizer
 Organize stock research, investment notes and saved reports. Explore https://wall-street-watchers.pages.dev/
 Image: wall-street-watchers-project.png
 
-Apex Code Works experience description
+Apex Code Works California experience description
 • Design, build, test and deploy responsive websites and custom web solutions for small businesses.
 • Translate client needs into website layouts, service pages, contact forms and third-party integrations.
-• Develop and maintain the Apex Code Works website with HTML, CSS and JavaScript, including an integrated service chatbot and Cloudflare Pages deployment.
+• Develop and maintain the Apex Code Works California website with HTML, CSS and JavaScript, including an integrated service chatbot and Cloudflare Pages deployment.
 • Delivered a paid contractor portfolio website for High Desert Development, from planning and visual design through launch.
 • Built Wall Street Watchers, a research organizer with historical price analysis, research notes, saved reports and optional API-connected company research.
 
@@ -38,7 +38,7 @@ Description: Academic honor society membership listed in BYU–Idaho education a
 
 Services
 Web Development; Web Design; Custom Software Development; IT Consulting.
-Description: I help small businesses turn ideas into useful websites and software. Through Apex Code Works, I design responsive websites, redesign existing sites, integrate APIs and third-party services, and develop custom tools around business needs. Projects include the Apex Code Works website and Wall Street Watchers research organizer. I collaborate remotely from California City, California. Explore my work at https://apex-code-works.pages.dev/
+Description: I help small businesses turn ideas into useful websites and software. Through Apex Code Works California, I design responsive websites, redesign existing sites, integrate APIs and third-party services, and develop custom tools around business needs. Projects include the Apex Code Works California website and Wall Street Watchers research organizer. I collaborate remotely from California City, California. Explore my work at https://apex-code-works.pages.dev/
 Do not invent pricing or enable unrequested messaging/privacy settings.
 
 GPA

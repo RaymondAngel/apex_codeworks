@@ -13,7 +13,7 @@ document.querySelectorAll('[data-shortcut]').forEach((link) => {
     const url = URL.createObjectURL(blob);
     const download = document.createElement('a');
     download.href = url;
-    download.download = mac ? 'Apex Code Works.webloc' : 'Apex Code Works.url';
+    download.download = mac ? 'Apex Code Works California.webloc' : 'Apex Code Works California.url';
     document.body.append(download);
     download.click();
     download.remove();
