@@ -149,6 +149,12 @@ h2 { margin: 0; color: var(--navy); font: 700 clamp(2rem, 5vw, 3.5rem)/1.08 Mont
 .personal-note img { max-height: 460px; object-fit: cover; object-position: center 35%; box-shadow: var(--shadow); }
 
 /* Careers and device shortcut content */
+.faq-section { padding-block: 4rem 5rem; max-width: 950px; }
+.faq-list { display: grid; gap: 1rem; margin-top: 2rem; }
+.faq-item { padding: 1.25rem; border: 1px solid rgb(18 60 105 / 20%); background: var(--white); }
+.faq-item summary { color: var(--navy); font-weight: 700; cursor: pointer; overflow-wrap: anywhere; }
+.faq-item summary:focus-visible { outline: 3px solid var(--bronze); outline-offset: 4px; }
+.faq-item p { margin: 1rem 0 0; }
 .shortcut-guide { max-width: 850px; padding-block: 3rem; }
 .shortcut-preview { width: 96px; height: 96px; border-radius: 20px; margin-bottom: 1.5rem; }
 .shortcut-card { margin-block: 1.5rem; padding: 1.5rem; background: var(--white); box-shadow: var(--shadow); }

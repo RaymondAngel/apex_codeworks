@@ -114,6 +114,24 @@ try {
   }
   console.log(`PASS ${pages.length} pages at ${width}px: duplicates, images, CSS, overflow, menu`);
  }
+ await page.goto(`${origin}/faq.html`);
+ assert.equal(await page.locator('.faq-item').count(),18);
+ await page.locator('#deposit summary').focus();
+ await page.keyboard.press('Enter');
+ assert.equal(await page.locator('#deposit').evaluate(e=>e.open),true);
+ assert.match(await page.locator('#deposit').innerText(),/\$875/);
+ await page.locator('.apex-chat-toggle').click();
+ for (const [question,expected] of [
+  ['When do I pay?',/50%/],
+  ['How long does a website take?',/2–4 weeks/],
+  ['How do I cancel care?',/before the next renewal/],
+  ['How quickly will you respond?',/two business days/]
+ ]) {
+  await page.locator('#apex-chat-question').fill(question);
+  await page.locator('.apex-chat-send').click();
+  assert.match(await page.locator('.apex-chat-message').last().innerText(),expected);
+ }
+ console.log('PASS FAQ keyboard expansion and chatbot terms');
  await page.goto(`${origin}/contact.html`);
  await page.route('https://api.web3forms.com/submit',r=>r.fulfill({status:200,contentType:'application/json',body:'{"success":true}'}));
  await page.locator('#name').fill('Local automated test');

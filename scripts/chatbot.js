@@ -68,9 +68,15 @@
       "updates",
       "backup",
       "security",
-      "monitoring"
+      "monitoring",
+      "rollover",
+      "roll over",
+      "unused",
+      "allowance",
+      "hour",
+      "hours"
     ],
-    "answer": "Optional care starts at $150 per month and includes availability and inquiry-form checks, recoverable backups, and up to one hour of content updates per month. Extra work and third-party fees are separate. Scope, response times, and cancellation terms are agreed in advance.",
+    "answer": "Optional care starts at $150 per month. Monthly website availability, inquiry-form, and backup checks are separate from your update allowance; a recoverable copy is saved before changes. You get up to 60 minutes of customer-requested text, photo, and business-information changes per billing month, including making, testing, and publishing them. Unused time does not roll over. New pages, redesigns, integrations, new features, urgent work, troubleshooting, and repairs are quoted separately. We explain and obtain approval for out-of-scope work or time beyond your allowance before starting it. We respond within two business days, Monday through Friday; completion dates are agreed per request. No continuous monitoring, unlimited repairs, or 24-hour support. Hosting, domain renewals, and third-party fees are separate. Billing and cancellation terms are agreed before the plan begins.",
     "links": [
       [
         "Optional website care",
@@ -79,6 +85,10 @@
       [
         "Discuss your project",
         "contact.html#project-form"
+      ],
+      [
+        "Care and project FAQs",
+        "faq.html"
       ]
     ]
   },
@@ -151,6 +161,10 @@
       [
         "Discuss your project",
         "contact.html#project-form"
+      ],
+      [
+        "Care and project FAQs",
+        "faq.html"
       ]
     ]
   },
@@ -175,6 +189,10 @@
       [
         "Discuss your project",
         "contact.html#project-form"
+      ],
+      [
+        "Care and project FAQs",
+        "faq.html"
       ]
     ]
   },
@@ -201,6 +219,284 @@
         "contact.html#project-form"
       ]
     ]
+  },
+  {
+    "id": "faq-timeline",
+    "title": "How long does a website take?",
+    "terms": [
+      "timeline",
+      "deadline",
+      "how long",
+      "weeks",
+      "turnaround",
+      "delivery"
+    ],
+    "answer": "A straightforward five-page site typically takes 2\u20134 weeks after the initial payment and required content are received and the scope is approved. This is an estimate, not a guaranteed deadline. We confirm a schedule before starting; delayed materials, feedback, approvals, third-party services, or added work can move the launch date.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#timeline"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-materials",
+    "title": "What do I need to provide?",
+    "terms": [
+      "materials",
+      "provide",
+      "photos",
+      "logo",
+      "copywriting",
+      "content"
+    ],
+    "answer": "Provide your business details, service descriptions, logo if you have one, contact information, and photos you have permission to use. You approve the final text and images. We can help organize your material; substantial copywriting, photography, branding, and paid assets are separately scoped. Please do not put passwords or API secrets in the inquiry form or chatbot; access arrangements are agreed separately.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#materials"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-deposit",
+    "title": "When do I pay?",
+    "terms": [
+      "deposit",
+      "milestone",
+      "when do i pay",
+      "payment schedule",
+      "upfront",
+      "balance"
+    ],
+    "answer": "For standard website projects, 50% is due after you accept the written proposal to reserve the agreed start, and 50% is due after you approve the completed preview, before public launch and file handover. For a $1,750 project, that is $875 at each stage. Larger or custom projects may use different milestones stated in the proposal. Optional care is billed monthly in advance from its agreed start date.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#deposit"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-revisions",
+    "title": "What counts as a revision round?",
+    "terms": [
+      "revision",
+      "revisions",
+      "feedback",
+      "rounds"
+    ],
+    "answer": "A revision round is one consolidated list of feedback on the agreed website, such as wording, photo choices, colors, or layout refinements within the approved scope. Two rounds are included. New pages, a new design direction after approval, integrations, and extra features are changes in scope. We explain any added price and obtain your approval before doing extra work.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#revisions"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-costs",
+    "title": "Are hosting, domains, and other fees included?",
+    "terms": [
+      "fees",
+      "domain",
+      "hosting charges",
+      "third party costs",
+      "subscriptions"
+    ],
+    "answer": "Domain registration and renewals, hosting charges, payment-processing fees, paid assets, and other third-party subscriptions are separate from the website build and care fees unless your proposal explicitly includes them. We identify expected services and costs before setup, and you approve paid additions. Provider prices can change; we do not promise free hosting indefinitely.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#costs"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-excluded",
+    "title": "What is outside the care plan?",
+    "terms": [
+      "excluded",
+      "extra work",
+      "urgent",
+      "outage",
+      "repairs"
+    ],
+    "answer": "New pages, layout redesigns, payment integrations, new features, urgent work, and troubleshooting or repairs beyond routine checks are quoted separately. We explain the scope and price and obtain your approval before starting extra work. The plan does not include unlimited edits, continuous monitoring, 24-hour support, or responsibility for third-party outages.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#excluded"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-response",
+    "title": "How quickly will you answer a request?",
+    "terms": [
+      "response",
+      "respond",
+      "support",
+      "emergency",
+      "same day"
+    ],
+    "answer": "We respond within two business days, Monday through Friday. That is an initial response, not a guaranteed completion time. We agree on timing for each request based on its scope and current workload. Emergency or same-day service is not included in the standard care plan.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#response"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-cancel-care",
+    "title": "How do I cancel website care?",
+    "terms": [
+      "cancel",
+      "cancellation",
+      "renewal"
+    ],
+    "answer": "Care is month to month and billed in advance. Email your cancellation before the next renewal date to prevent the next charge. Care continues through the paid billing period, and unused time does not roll over. Any different notice or refund terms must be stated and agreed in writing before your plan begins. Canceling care does not take away a fully paid website; you arrange ongoing hosting, renewals, and maintenance.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#cancel-care"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-cancel-project",
+    "title": "What if I need to pause or cancel a website project?",
+    "terms": [
+      "pause",
+      "cancel project",
+      "refund"
+    ],
+    "answer": "Tell us as soon as possible so we can review the project status together. Before work starts, the written proposal sets out how completed work, approved third-party costs, unused payments, and any refunds are handled if the project is paused or canceled. A restart may require a new schedule. We do not promise a blanket full refund regardless of work already completed.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#cancel-project"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-defects",
+    "title": "What if something does not work after launch?",
+    "terms": [
+      "defect",
+      "bug",
+      "broken",
+      "30 days",
+      "warranty"
+    ],
+    "answer": "For the first 30 days after launch, we correct defects in the work delivered under the agreed website scope. New requests, changes made by others, and third-party service problems are outside that correction period. Afterward, troubleshooting and repairs are separately quoted unless included in your written agreement. Let us know what happened and which page is affected.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#defects"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-editing",
+    "title": "Can I edit the website myself or hire another developer?",
+    "terms": [
+      "edit myself",
+      "another developer",
+      "cms",
+      "dashboard",
+      "editor"
+    ],
+    "answer": "Yes. After full payment and handover, you can edit the delivered files or hire another developer. Static websites usually require HTML, CSS, or JavaScript knowledge rather than a built-in editing dashboard. A content-management system or custom editor is a separate project. Changes by others may need a review before we resume support.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#editing"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq-results",
+    "title": "Will the website guarantee Google rankings or more customers?",
+    "terms": [
+      "google",
+      "rankings",
+      "seo",
+      "leads",
+      "guarantee",
+      "customers"
+    ],
+    "answer": "No. We build the agreed website with clear content, mobile-friendly layouts, and the search-friendly structure included in your proposal. Google rankings, traffic, sales, accessibility certification, and legal compliance are not guaranteed. Ongoing SEO campaigns, advertising, formal accessibility audits, and specialist legal reviews are separate services and should be scoped explicitly.",
+    "links": [
+      [
+        "Read the FAQ",
+        "faq.html#results"
+      ],
+      [
+        "Discuss your project",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "faq",
+    "title": "Frequently asked questions",
+    "terms": [
+      "faq",
+      "frequently asked questions"
+    ],
+    "answer": "Read the FAQ for standard project and care terms. Your written proposal confirms the final scope, price, schedule, and agreed differences before work starts.",
+    "links": [
+      [
+        "Frequently asked questions",
+        "faq.html"
+      ]
+    ]
   }
 ];
   const normalize = value => value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -208,11 +504,19 @@
     const query = ` ${normalize(value)} `;
 
     let preferred;
-    if (/\b(stripe|paypal|payments?|checkout|apis?|integrations?)\b/.test(query)) preferred = 'payments';
-    else if (/\b(ownership|own|keep|handover|cancel)\b/.test(query)) preferred = 'ownership';
+    if (/\b(how quickly|respond|response|answer a request)\b/.test(query)) preferred = 'faq-response';
+    else if (/\b(faq|frequently asked questions)\b/.test(query)) preferred = 'faq';
+    else if (/\b(deposit|milestones?|upfront|balance|when do i pay|payment schedule)\b/.test(query)) preferred = 'faq-deposit';
+    else if (/\b(cancel|cancellation|refund|pause)\b/.test(query) && /\b(project|build|refund|pause)\b/.test(query)) preferred = 'faq-cancel-project';
+    else if (/\b(cancel|cancellation|renewal)\b/.test(query)) preferred = 'faq-cancel-care';
+    else if (/\b(timeline|deadline|how long|weeks|turnaround|delivery)\b/.test(query)) preferred = 'faq-timeline';
+    else if (/\b(revisions?|rounds|feedback)\b/.test(query)) preferred = 'faq-revisions';
+    else if (/\b(google|rankings?|seo|leads|guarantee)\b/.test(query)) preferred = 'faq-results';
+    else if (/\b(stripe|paypal|payments?|checkout|apis?|integrations?)\b/.test(query)) preferred = 'payments';
+    else if (/\b(ownership|own|keep|handover)\b/.test(query)) preferred = 'ownership';
     else if (/\b(automation|automations|automate|workflow|software|portal|dashboard)\b/.test(query)) preferred = 'automation';
     else if (/\b(price|pricing|cost|quote|budget)\b/.test(query)) preferred = 'quote';
-    else if (/\b(care|hosting|maintenance|updates|backups?|monitoring|security|support)\b/.test(query)) preferred = 'care';
+    else if (/\b(care|hosting|maintenance|updates|backups?|monitoring|security|support|rollover|roll over|unused|allowance|hours?)\b/.test(query)) preferred = 'care';
     else if (/\b(repair|fix|redesign|improve|broken)\b/.test(query)) preferred = 'improve';
     if (preferred) return [TOPICS.find(topic => topic.id === preferred)];
 
