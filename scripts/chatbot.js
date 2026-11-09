@@ -462,16 +462,21 @@
   },
   {
     "id": "faq-results",
-    "title": "Will the website guarantee Google rankings or more customers?",
+    "title": "Do website hosting or care guarantee Google indexing, placement, or rankings?",
     "terms": [
       "google",
       "rankings",
       "seo",
       "leads",
       "guarantee",
-      "customers"
+      "customers",
+      "index",
+      "indexing",
+      "indexed",
+      "placement",
+      "sitemap"
     ],
-    "answer": "No. We build the agreed website with clear content, mobile-friendly layouts, and the search-friendly structure included in your proposal. Google rankings, traffic, sales, accessibility certification, and legal compliance are not guaranteed. Ongoing SEO campaigns, advertising, formal accessibility audits, and specialist legal reviews are separate services and should be scoped explicitly.",
+    "answer": "No. Website development, hosting, and website care do not guarantee that Google will crawl, index, keep indexed, or display any page, or give it a particular search position. Being online, submitting a sitemap, or requesting indexing does not guarantee inclusion or ranking. Google controls its own indexing and search results. We provide the agreed website work and care tasks; search-friendly structure does not promise traffic, leads, or sales. Ongoing SEO work and indexing investigations are separately scoped unless expressly included in your proposal.",
     "links": [
       [
         "Read the FAQ",
@@ -480,6 +485,14 @@
       [
         "Discuss your project",
         "contact.html#project-form"
+      ],
+      [
+        "Google: how Search works",
+        "https://developers.google.com/search/docs/fundamentals/how-search-works"
+      ],
+      [
+        "Google SEO Starter Guide",
+        "https://developers.google.com/search/docs/fundamentals/seo-starter-guide"
       ]
     ]
   },
@@ -536,7 +549,7 @@
     else if (/\b(cancel|cancellation|renewal)\b/.test(query)) preferred = 'faq-cancel-care';
     else if (/\b(timeline|deadline|how long|weeks|turnaround|delivery)\b/.test(query)) preferred = 'faq-timeline';
     else if (/\b(revisions?|rounds|feedback)\b/.test(query)) preferred = 'faq-revisions';
-    else if (/\b(google|rankings?|seo|leads|guarantee)\b/.test(query)) preferred = 'faq-results';
+    else if (/\b(google|rankings?|seo|leads|guarantee|index|indexing|indexed|placement|sitemap)\b/.test(query)) preferred = 'faq-results';
     else if (/\b(stripe|paypal|payments?|checkout|apis?|integrations?)\b/.test(query)) preferred = 'payments';
     else if (/\b(ownership|own|keep|handover)\b/.test(query)) preferred = 'ownership';
     else if (/\b(automation|automations|automate|workflow|software|portal|dashboard)\b/.test(query)) preferred = 'automation';

@@ -34,8 +34,6 @@ h2 { margin: 0; color: var(--navy); font: 700 clamp(2rem, 5vw, 3.5rem)/1.08 Mont
 .button-light:hover, .button-light:focus-visible { background: var(--sand); }
 
 /* Header and primary navigation */
-.examples-top-link { display: block; padding: .65rem 1rem; color: var(--bronze-light); background: var(--navy-dark); border-bottom: 1px solid rgb(255 255 255 / 14%); text-align: center; font: 700 .85rem Montserrat, sans-serif; text-underline-offset: .25rem; }
-.examples-top-link:hover, .examples-top-link:focus-visible { color: var(--white); }
 .site-header { position: relative; z-index: 20; color: var(--white); background: var(--navy-dark); border-bottom: 1px solid rgb(255 255 255 / 14%); }
 .header-inner { width: min(calc(100% - 2rem), var(--max-width)); min-height: 78px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .brand { display: inline-flex; align-items: center; gap: .75rem; color: var(--white); text-decoration: none; font-family: Montserrat, sans-serif; text-transform: uppercase; letter-spacing: .06em; }
