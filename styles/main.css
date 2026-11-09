@@ -149,6 +149,14 @@ h2 { margin: 0; color: var(--navy); font: 700 clamp(2rem, 5vw, 3.5rem)/1.08 Mont
 .personal-note img { max-height: 460px; object-fit: cover; object-position: center 35%; box-shadow: var(--shadow); }
 
 /* Careers and device shortcut content */
+.agreement-dialog { width: min(94vw, 850px); max-height: 90dvh; padding: 1.5rem; border: 0; color: var(--charcoal); background: var(--ivory); box-shadow: var(--shadow); }
+.agreement-dialog::backdrop { background: rgb(4 13 21 / 78%); }
+.agreement-dialog h2 { font-size: clamp(1.4rem, 4vw, 2rem); }
+.agreement-scroll { max-height: 48dvh; margin-block: 1rem; padding: 1rem; overflow-y: scroll; overscroll-behavior: contain; border: 1px solid var(--muted); background: var(--white); }
+.agreement-scroll h2 { margin-top: 1.5rem; }
+.agreement-scroll:focus-visible { outline: 3px solid var(--bronze); outline-offset: 2px; }
+.agreement-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem; }
+.agreement-dialog button:disabled { opacity: .55; cursor: not-allowed; }
 .faq-section { padding-block: 4rem 5rem; max-width: 950px; }
 .faq-list { display: grid; gap: 1rem; margin-top: 2rem; }
 .faq-item { padding: 1.25rem; border: 1px solid rgb(18 60 105 / 20%); background: var(--white); }

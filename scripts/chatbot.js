@@ -384,7 +384,7 @@
       "cancellation",
       "renewal"
     ],
-    "answer": "Care is month to month and billed in advance. Email your cancellation before the next renewal date to prevent the next charge. Care continues through the paid billing period, and unused time does not roll over. Any different notice or refund terms must be stated and agreed in writing before your plan begins. Canceling care does not take away a fully paid website; you arrange ongoing hosting, renewals, and maintenance.",
+    "answer": "Care is month to month and billed in advance. Email Raymond.Angel.Developer@gmail.com before the next renewal date to cancel future renewals. Your cancellation takes effect at the end of your current paid billing period; it does not require us to approve the cancellation. We continue the agreed care services through that date, then stop the care services and future care charges. Accepted payments for the current care period are nonrefundable, with no proration or credit for unused time, except where a refund is required by applicable law or to correct an erroneous charge. This policy applies only to optional website care, not website-build payments or an installment agreement. Canceling care does not take away or shut down a fully paid website; you arrange ongoing hosting, renewals, and maintenance.",
     "links": [
       [
         "Read the FAQ",
@@ -497,6 +497,29 @@
         "faq.html"
       ]
     ]
+  },
+  {
+    "id": "payment-plan",
+    "title": "Proposed 12-month payment option",
+    "terms": [
+      "payment plan",
+      "installments",
+      "instalments",
+      "credit",
+      "financing",
+      "monthly payments"
+    ],
+    "answer": "A proposed 12-month website-and-care package combines the $1,750 website build with $150 of care each month. The base schedule is 11 monthly payments of $295.83 and a final payment of $295.87, totaling $3,550, before separately agreed additions or third-party service charges. The first payment would be due before work starts. Care is a required part of this proposed 12-month package; it remains optional on the standard upfront-purchase route. After the 12-month term, care may continue at $150 per month under the month-to-month care terms. This option is not yet open for enrollment. Applications will be reviewed by the Apex Code Works California Credit Review Department, our internal credit-review function. Applicants must submit a credit application and separate written authorization permitting Apex Code Works California to obtain and review credit information for the payment-plan application before any credit check. Submitting an inquiry is not permission to check credit, and approval is not guaranteed. The application and authorization process must be finalized before enrollment, and the written agreement must confirm all charges, billing authorization, early termination, and default terms. The proposed missed-payment grace period is 15 calendar days. Suspension rights and any reinstatement fee are not finalized and are not being charged. Canceling optional care does not erase a separate website installment balance.",
+    "links": [
+      [
+        "Proposed payment option",
+        "custom-websites.html#payment-plan"
+      ],
+      [
+        "Request credit application instructions",
+        "credit-application.html"
+      ]
+    ]
   }
 ];
   const normalize = value => value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -504,9 +527,11 @@
     const query = ` ${normalize(value)} `;
 
     let preferred;
+    if (/\b(payment plan|installments?|instalments?|credit|financing|monthly payments|grace|reinstatement|suspension)\b/.test(query)) return [TOPICS.find(topic => topic.id === 'payment-plan')];
     if (/\b(how quickly|respond|response|answer a request)\b/.test(query)) preferred = 'faq-response';
     else if (/\b(faq|frequently asked questions)\b/.test(query)) preferred = 'faq';
     else if (/\b(deposit|milestones?|upfront|balance|when do i pay|payment schedule)\b/.test(query)) preferred = 'faq-deposit';
+    else if (/\b(refunds?|refundable|nonrefundable|proration|prorated)\b/.test(query) && /\b(care|maintenance|service|monthly)\b/.test(query)) preferred = 'faq-cancel-care';
     else if (/\b(cancel|cancellation|refund|pause)\b/.test(query) && /\b(project|build|refund|pause)\b/.test(query)) preferred = 'faq-cancel-project';
     else if (/\b(cancel|cancellation|renewal)\b/.test(query)) preferred = 'faq-cancel-care';
     else if (/\b(timeline|deadline|how long|weeks|turnaround|delivery)\b/.test(query)) preferred = 'faq-timeline';

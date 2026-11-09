@@ -125,6 +125,8 @@ if (projectForm) {
     // Continue with the default service when storage is unavailable or malformed.
   }
   const submitButton = projectForm.querySelector('[type="submit"]');
+  const submitLabel = projectForm.getAttribute('data-submit-label') || 'Send project inquiry';
+  const gatedSubmit = projectForm.getAttribute('data-gated-submit') === 'true';
   const formMessage = projectForm.querySelector('#form-message');
   const emailFallback = projectForm.querySelector('#email-fallback');
   const emailDraftLink = projectForm.querySelector('#email-draft-link');
@@ -162,10 +164,85 @@ if (projectForm) {
   budgetInput.addEventListener('input', () => budgetInput.removeAttribute('aria-invalid'));
   let sending = false;
   let inquiryReference = null;
+  let pageGeneration = 0;
+  let activeController = null;
+  function trimRequestFields() {
+    if (!gatedSubmit) return;
+    projectForm.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], textarea').forEach((field) => {
+      field.value = field.value.trim();
+    });
+  }
+  function updateSubmitState() {
+    if (gatedSubmit) submitButton.disabled = sending || !projectForm.checkValidity();
+  }
+  if (gatedSubmit) {
+    projectForm.addEventListener('input', updateSubmitState);
+    projectForm.addEventListener('change', updateSubmitState);
+    projectForm.addEventListener('focusout', () => { trimRequestFields(); updateSubmitState(); });
+    projectForm.addEventListener('reset', () => queueMicrotask(updateSubmitState));
+    function clearApplicationPage() {
+      projectForm.reset();
+      inquiryReference = null;
+      formMessage.textContent = '';
+      emailError.textContent = '';
+      emailInput.removeAttribute('aria-invalid');
+      budgetInput.removeAttribute('aria-invalid');
+      emailFallback.hidden = true;
+      emailDraftLink.href = 'mailto:Raymond.Angel.Developer@gmail.com';
+      confirmationNumber.textContent = '';
+      if (confirmation.open) confirmation.close();
+      if (budgetError.open) budgetError.close();
+      updateSubmitState();
+    }
+    window.addEventListener('pagehide', () => {
+      pageGeneration++;
+      activeController?.abort();
+      activeController = null;
+      sending = false;
+      submitButton.textContent = submitLabel;
+      clearApplicationPage();
+    });
+    window.addEventListener('pageshow', clearApplicationPage);
+    confirmation.addEventListener('close', clearApplicationPage);
+    confirmation.querySelector('.confirmation-close').addEventListener('click', clearApplicationPage);
+  }
 
   // Build the draft at click time so edits after a failed attempt are included.
+  function acknowledgmentRecord(entries, reference, submittedAt) {
+    const formatTime = value => {
+      if (!value) return 'Not recorded';
+      const date = new Date(value);
+      return Number.isNaN(date.getTime()) ? 'Not recorded' : `${date.toISOString()} | ${date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles', dateStyle: 'full', timeStyle: 'long' })}`;
+    };
+    return [
+      'BUSINESS ACKNOWLEDGMENT RECORD — NOT A CUSTOMER RECEIPT',
+      `Confirmation reference: ${reference || 'Not yet assigned'}`,
+      `Business: ${entries.get('business_name') || 'Not provided'}`,
+      `Contact: ${entries.get('name') || 'Not provided'} <${entries.get('email') || 'Not provided'}>`,
+      'Notice and draft version: 2026-11-08',
+      'Documents: privacy.html; credit-terms.html; arbitration.html',
+      `Privacy/usage review: ${entries.get('request_agreement') || 'Not acknowledged'}`,
+      `Privacy/usage I agree clicked: ${formatTime(entries.get('request_agreement_reviewed_at'))}`,
+      `Privacy/usage checkbox checked: ${formatTime(entries.get('request_agreement_checked_at'))}`,
+      `Dispute draft review: ${entries.get('arbitration_draft_acknowledgment') || 'Not acknowledged'}`,
+      `Dispute draft I agree clicked: ${formatTime(entries.get('arbitration_draft_reviewed_at'))}`,
+      `Dispute draft checkbox checked: ${formatTime(entries.get('arbitration_review_checked_at'))}`,
+      `Submission prepared: ${formatTime(submittedAt)}`,
+      'Times are supplied by the applicant browser; they are not independently verified server timestamps.',
+      'Records draft-review acknowledgment only. No active arbitration waiver or credit-check authorization.',
+      'The flow requires reaching the document end; this does not prove the documents were read.'
+    ].join('\n');
+  }
   // The visitor reviews and sends it in their email app; this is not delivery confirmation.
-  emailDraftLink.addEventListener('click', () => {
+  emailDraftLink.addEventListener('click', (event) => {
+    if (gatedSubmit) {
+      trimRequestFields();
+      if (!projectForm.reportValidity()) {
+        event.preventDefault();
+        updateSubmitState();
+        return;
+      }
+    }
     const entries = new FormData(projectForm);
     const subject = inquiryReference
       ? `Apex Code Works California inquiry [${inquiryReference}]`
@@ -173,6 +250,7 @@ if (projectForm) {
     const body = [
       ...(inquiryReference ? [`Inquiry reference: ${inquiryReference}`] : []),
       `Name or company: ${entries.get('name') || ''}`,
+      ...(entries.get('business_name') ? [`Business name: ${entries.get('business_name')}`] : []),
       `Email: ${entries.get('email') || ''}`,
       `Phone: ${entries.get('phone') || 'Not specified'}`,
       `Service: ${entries.get('service') || 'Not specified'}`,
@@ -180,6 +258,7 @@ if (projectForm) {
       '',
       'Project details:',
       String(entries.get('details') || ''),
+      ...(gatedSubmit ? ['', acknowledgmentRecord(entries, inquiryReference, new Date().toISOString())] : []),
       '',
       'Sent by email after the website could not confirm the form submission.'
     ].join('\r\n');
@@ -214,13 +293,17 @@ if (projectForm) {
 
   projectForm.addEventListener('submit', async (event) => {
     event.preventDefault();
+    trimRequestFields();
     if (sending || !validateBudget() || !projectForm.reportValidity()) return;
     sending = true;
+    const submittedGeneration = pageGeneration;
     submitButton.disabled = true;
     submitButton.textContent = 'Sending inquiry...';
     formMessage.textContent = 'Sending your inquiry…';
     const controller = new AbortController();
+    if (gatedSubmit) activeController = controller;
     const progressUpdate = setTimeout(() => {
+      if (submittedGeneration !== pageGeneration) return;
       formMessage.textContent = 'Still waiting for the email service to confirm your inquiry. Your entries are preserved.';
     }, 8000);
     const timeout = setTimeout(() => controller.abort(), 30000);
@@ -235,6 +318,14 @@ if (projectForm) {
       payload.budget = budgetInput.value.trim() ? `${budgetInput.value.trim()} USD` : 'Not specified';
       payload.details = payload.details.trim() || 'Not specified';
       payload.confirmation_number = inquiryReference;
+      if (gatedSubmit) {
+        payload.request_agreement_version = '2026-11-08';
+        payload.request_submitted_at = new Date().toISOString();
+        const record = acknowledgmentRecord(new FormData(projectForm), inquiryReference, payload.request_submitted_at);
+        payload.business_acknowledgment_record = record;
+        // Include this in the email's main message even if custom fields are omitted.
+        payload.details += '\n\n' + record;
+      }
       const usesWeb3Forms = new URL(projectForm.action).hostname === 'api.web3forms.com';
       const subject = `Apex Code Works California inquiry [${inquiryReference}]`;
       if (usesWeb3Forms) {
@@ -260,6 +351,7 @@ if (projectForm) {
         throw new Error(response.status === 429 ? 'rate-limit' : 'service-error');
       }
       const result = await response.json();
+      if (submittedGeneration !== pageGeneration) return;
       if (!(result.success === true || result.success === 'true')) {
         throw new Error('not-accepted');
       }
@@ -273,6 +365,7 @@ if (projectForm) {
       inquiryReference = null;
       confirmation.showModal();
     } catch (error) {
+      if (submittedGeneration !== pageGeneration) return;
       // A connection failure can happen after acceptance; retain the same reference on retry.
       const reference = inquiryReference ? ` Reference: ${inquiryReference}.` : '';
       const diagnostic = error.name === 'AbortError'
@@ -295,12 +388,17 @@ if (projectForm) {
     } finally {
       clearTimeout(timeout);
       clearTimeout(progressUpdate);
-      sending = false;
-      submitButton.disabled = false;
-      submitButton.textContent = 'Send project inquiry';
+      if (submittedGeneration === pageGeneration) {
+        activeController = null;
+        sending = false;
+        submitButton.disabled = false;
+        updateSubmitState();
+        submitButton.textContent = submitLabel;
+      }
     }
   });
   submitButton.disabled = false;
+  updateSubmitState();
 }
 
 if (dateTimeElements.length) {

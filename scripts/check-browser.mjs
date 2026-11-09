@@ -115,7 +115,7 @@ try {
   console.log(`PASS ${pages.length} pages at ${width}px: duplicates, images, CSS, overflow, menu`);
  }
  await page.goto(`${origin}/faq.html`);
- assert.equal(await page.locator('.faq-item').count(),18);
+ assert.equal(await page.locator('.faq-item').count(),19);
  await page.locator('#deposit summary').focus();
  await page.keyboard.press('Enter');
  assert.equal(await page.locator('#deposit').evaluate(e=>e.open),true);
@@ -123,6 +123,8 @@ try {
  await page.locator('.apex-chat-toggle').click();
  for (const [question,expected] of [
   ['When do I pay?',/50%/],
+  ['Do you offer a payment plan?',/not yet open for enrollment/],
+  ['Is monthly care refundable?',/nonrefundable/],
   ['How long does a website take?',/2–4 weeks/],
   ['How do I cancel care?',/before the next renewal/],
   ['How quickly will you respond?',/two business days/]
@@ -132,6 +134,72 @@ try {
   assert.match(await page.locator('.apex-chat-message').last().innerText(),expected);
  }
  console.log('PASS FAQ keyboard expansion and chatbot terms');
+ await page.goto(`${origin}/credit-application.html`);
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ let applicationRequest;
+ await page.route('https://api.web3forms.com/submit',route => {
+  applicationRequest = route.request().postDataJSON();
+  return route.fulfill({status:200,contentType:'application/json',body:'{"success":true}'});
+ });
+ await page.locator('#business-name').fill('  Example Local Business  ');
+ await page.locator('#name').fill('  Test Contact  ');
+ await page.locator('#email').fill('test@example.com');
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ async function reviewAgreement(id) {
+  await page.locator(`[data-review-checkbox="${id}"]`).click();
+  await page.locator('#agreement-content section').first().waitFor();
+  assert.equal(await page.locator('#agreement-accept').isDisabled(),true);
+  await page.locator('#agreement-content').evaluate(e=>{e.scrollTop=e.scrollHeight;});
+  await page.locator('#agreement-accept').waitFor({state:'visible'});
+  await page.waitForFunction(()=>!document.querySelector('#agreement-accept').disabled);
+  await page.locator('#agreement-accept').click();
+  await page.locator('#agreement-dialog').waitFor({state:'hidden'});
+  await page.locator('#'+id).check();
+ }
+ await page.locator('[data-review-checkbox="request-agreement"]').click();
+ await page.locator('#agreement-content section').first().waitFor();
+ assert.equal(await page.locator('#agreement-accept').isDisabled(),true);
+ await page.locator('#agreement-cancel').click();
+ await page.locator('#agreement-dialog').waitFor({state:'hidden'});
+ assert.equal(await page.locator('#request-agreement').isChecked(),false);
+ assert.equal(await page.locator('#request-agreement').getAttribute('aria-disabled'),'true');
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ await reviewAgreement('request-agreement');
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ await reviewAgreement('arbitration-review');
+ assert.equal(await page.locator('#project-form [type=submit]').isEnabled(),true);
+ await page.locator('#project-form [type=submit]').click();
+ await page.locator('#inquiry-confirmation').waitFor({state:'visible'});
+ assert.equal(applicationRequest.business_name,'Example Local Business');
+ assert.equal(applicationRequest.name,'Test Contact');
+ assert.match(applicationRequest.request_agreement_version,/2026-11-08/);
+ assert.match(applicationRequest.arbitration_draft_acknowledgment,/no arbitration acceptance or trial waiver/);
+ assert.match(applicationRequest.request_agreement_reviewed_at,/^\d{4}-\d{2}-\d{2}T/);
+ assert.match(applicationRequest.arbitration_draft_reviewed_at,/^\d{4}-\d{2}-\d{2}T/);
+ assert.match(applicationRequest.request_agreement_checked_at,/^\d{4}-\d{2}-\d{2}T/);
+ assert.match(applicationRequest.arbitration_review_checked_at,/^\d{4}-\d{2}-\d{2}T/);
+ assert.match(applicationRequest.business_acknowledgment_record,/Confirmation reference: ACW-/);
+ assert.match(applicationRequest.business_acknowledgment_record,/Notice and draft version: 2026-11-08/);
+ assert.match(applicationRequest.message,/BUSINESS ACKNOWLEDGMENT RECORD/);
+ assert.doesNotMatch(await page.locator('#inquiry-confirmation').innerText(),/BUSINESS ACKNOWLEDGMENT RECORD/);
+ assert.equal(applicationRequest.service,'Credit Application Request');
+ assert.match(applicationRequest.message,/does not authorize a credit check/);
+ assert.equal(await page.locator('#project-form [type=submit]').textContent(),'Send application request');
+ assert.equal(await page.locator('input[type=file], input[name=ssn], input[name=dob], input[name=tax_id]').count(),0);
+ assert.match(await page.locator('#confirmation-number').textContent(),/^ACW-/);
+ await page.locator('#inquiry-confirmation .confirmation-close').click();
+ assert.equal(await page.locator('#name').inputValue(),'');
+ assert.equal(await page.locator('#business-name').inputValue(),'');
+ assert.equal(await page.locator('#confirmation-number').textContent(),'');
+ assert.equal(await page.locator('#request-agreement').isChecked(),false);
+ assert.equal(await page.locator('#arbitration-review').isChecked(),false);
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ await page.locator('#name').fill('Incomplete request');
+ await page.goto(`${origin}/faq.html`);
+ await page.goBack();
+ assert.equal(await page.locator('#name').inputValue(),'');
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ console.log('PASS preliminary application request payload and submission; no sensitive credit fields');
  await page.goto(`${origin}/contact.html`);
  await page.route('https://api.web3forms.com/submit',r=>r.fulfill({status:200,contentType:'application/json',body:'{"success":true}'}));
  await page.locator('#name').fill('Local automated test');
