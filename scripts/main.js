@@ -219,6 +219,7 @@ if (projectForm) {
       `Confirmation reference: ${reference || 'Not yet assigned'}`,
       `Business: ${entries.get('business_name') || 'Not provided'}`,
       `Contact: ${entries.get('name') || 'Not provided'} <${entries.get('email') || 'Not provided'}>`,
+      `Self-reported credit score (unverified): ${entries.get('self_reported_credit_score') || 'Not provided'}`,
       'Notice and draft version: 2026-11-08',
       'Documents: privacy.html; credit-terms.html; arbitration.html',
       `Privacy/usage review: ${entries.get('request_agreement') || 'Not acknowledged'}`,

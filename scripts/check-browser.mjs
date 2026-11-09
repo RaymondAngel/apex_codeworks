@@ -145,6 +145,7 @@ try {
  await page.locator('#name').fill('  Test Contact  ');
  await page.locator('#email').fill('test@example.com');
  assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ await page.locator('#credit-score').fill('720');
  async function reviewAgreement(id) {
   await page.locator(`[data-review-checkbox="${id}"]`).click();
   await page.locator('#agreement-content section').first().waitFor();
@@ -167,11 +168,20 @@ try {
  await reviewAgreement('request-agreement');
  assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
  await reviewAgreement('arbitration-review');
+ await page.locator('#credit-score').fill('299');
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ await page.locator('#credit-score').fill('851');
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ await page.locator('#credit-score').fill('');
+ assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
+ await page.locator('#credit-score').fill('720');
  assert.equal(await page.locator('#project-form [type=submit]').isEnabled(),true);
  await page.locator('#project-form [type=submit]').click();
  await page.locator('#inquiry-confirmation').waitFor({state:'visible'});
  assert.equal(applicationRequest.business_name,'Example Local Business');
  assert.equal(applicationRequest.name,'Test Contact');
+ assert.equal(applicationRequest.self_reported_credit_score,'720');
+ assert.match(applicationRequest.business_acknowledgment_record,/Self-reported credit score \(unverified\): 720/);
  assert.match(applicationRequest.request_agreement_version,/2026-11-08/);
  assert.match(applicationRequest.arbitration_draft_acknowledgment,/no arbitration acceptance or trial waiver/);
  assert.match(applicationRequest.request_agreement_reviewed_at,/^\d{4}-\d{2}-\d{2}T/);
@@ -190,6 +200,7 @@ try {
  await page.locator('#inquiry-confirmation .confirmation-close').click();
  assert.equal(await page.locator('#name').inputValue(),'');
  assert.equal(await page.locator('#business-name').inputValue(),'');
+ assert.equal(await page.locator('#credit-score').inputValue(),'');
  assert.equal(await page.locator('#confirmation-number').textContent(),'');
  assert.equal(await page.locator('#request-agreement').isChecked(),false);
  assert.equal(await page.locator('#arbitration-review').isChecked(),false);
@@ -199,7 +210,7 @@ try {
  await page.goBack();
  assert.equal(await page.locator('#name').inputValue(),'');
  assert.equal(await page.locator('#project-form [type=submit]').isDisabled(),true);
- console.log('PASS preliminary application request payload and submission; no sensitive credit fields');
+ console.log('PASS self-reported score limits, submission record, and reset; no report or identity-document collection');
  await page.goto(`${origin}/contact.html`);
  await page.route('https://api.web3forms.com/submit',r=>r.fulfill({status:200,contentType:'application/json',body:'{"success":true}'}));
  await page.locator('#name').fill('Local automated test');
@@ -215,6 +226,11 @@ try {
  await page.locator('#apex-chat-question').fill('PayPal integration');
  await page.locator('.apex-chat-send').click();
  assert.match(await page.locator('.apex-chat-log').innerText(),/Stripe and PayPal payment integrations/);
+ for(const question of ['Hello','purple pancake constellation','Show me your work','Where do I apply for credit?','The submit button is gray']) {
+  await page.locator('#apex-chat-question').fill(question);
+  await page.locator('.apex-chat-send').click();
+  assert((await page.locator('.apex-chat-message').last().locator('a').count())>0,question+': response needs a page link');
+ }
  const blockedStorage = await browser.newPage();
  blockedStorage.on('pageerror',e=>errors.push(e.message));
  await blockedStorage.route('https://fonts.googleapis.com/**',r=>r.abort());

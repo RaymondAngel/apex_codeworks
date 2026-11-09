@@ -522,7 +522,7 @@
       "financing",
       "monthly payments"
     ],
-    "answer": "A proposed 12-month website-and-care package combines the $1,750 website build with $150 of care each month. The base schedule is 11 monthly payments of $295.83 and a final payment of $295.87, totaling $3,550, before separately agreed additions or third-party service charges. The first payment would be due before work starts. Care is a required part of this proposed 12-month package; it remains optional on the standard upfront-purchase route. After the 12-month term, care may continue at $150 per month under the month-to-month care terms. This option is not yet open for enrollment. Applications will be reviewed by the Apex Code Works California Credit Review Department, our internal credit-review function. Applicants must submit a credit application and separate written authorization permitting Apex Code Works California to obtain and review credit information for the payment-plan application before any credit check. Submitting an inquiry is not permission to check credit, and approval is not guaranteed. The application and authorization process must be finalized before enrollment, and the written agreement must confirm all charges, billing authorization, early termination, and default terms. The proposed missed-payment grace period is 15 calendar days. Suspension rights and any reinstatement fee are not finalized and are not being charged. Canceling optional care does not erase a separate website installment balance.",
+    "answer": "The proposed 12-month package combines a $1,750 website build and $150 monthly care: 11 payments of $295.83 and a final payment of $295.87, totaling $3,550 before separately agreed additions or third-party charges. Care is required during this proposed package. The plan is not yet open for enrollment; final approval and written terms are still required. You can submit a preliminary request with a self-reported score. The proposed 15-day grace period and any suspension or reinstatement terms are not active collection procedures.",
     "links": [
       [
         "Proposed payment option",
@@ -533,32 +533,403 @@
         "credit-application.html"
       ]
     ]
+  },
+  {
+    "id": "home",
+    "title": "Home and services",
+    "terms": [
+      "home",
+      "homepage",
+      "main page",
+      "start over",
+      "services",
+      "what do you do"
+    ],
+    "answer": "Start on the home page to explore business websites, website improvements, optional care, and the project process.",
+    "links": [
+      [
+        "Home",
+        "index.html"
+      ],
+      [
+        "Services",
+        "index.html#services"
+      ]
+    ]
+  },
+  {
+    "id": "examples",
+    "title": "Website examples and portfolio",
+    "terms": [
+      "examples",
+      "portfolio",
+      "sample",
+      "samples",
+      "previous work",
+      "projects",
+      "high desert",
+      "wall street",
+      "italian pickup"
+    ],
+    "answer": "Explore High Desert Development, a delivered contractor website; Wall Street Watchers, a research application; and The Italian Pickup, a fictional bakery concept. The examples page includes images and links to each project.",
+    "links": [
+      [
+        "Website examples",
+        "website-examples.html"
+      ],
+      [
+        "High Desert Development example",
+        "website-examples.html#high-desert-development"
+      ],
+      [
+        "Wall Street Watchers example",
+        "website-examples.html#wall-street-watchers"
+      ],
+      [
+        "The Italian Pickup example",
+        "website-examples.html#italian-pickup"
+      ]
+    ]
+  },
+  {
+    "id": "about",
+    "title": "About the company",
+    "terms": [
+      "about",
+      "history",
+      "team",
+      "founder",
+      "who are you",
+      "harvard",
+      "byu",
+      "credentials",
+      "university",
+      "qualifications"
+    ],
+    "answer": "Read about the company foundation, university-issued credentials, development standards, and approach to working with businesses.",
+    "links": [
+      [
+        "About Apex Code Works California",
+        "about.html"
+      ]
+    ]
+  },
+  {
+    "id": "process",
+    "title": "How a project works",
+    "terms": [
+      "process",
+      "steps",
+      "how it works",
+      "how do we start",
+      "get started",
+      "workflow for a project"
+    ],
+    "answer": "The process starts with your goals and scope, then design, development, review, and launch. Your written proposal confirms price, schedule, and responsibilities.",
+    "links": [
+      [
+        "Project process",
+        "index.html#process"
+      ],
+      [
+        "Project questions",
+        "faq.html"
+      ],
+      [
+        "Start a conversation",
+        "contact.html#project-form"
+      ]
+    ]
+  },
+  {
+    "id": "application",
+    "title": "Credit application request form",
+    "terms": [
+      "apply",
+      "application",
+      "credit application",
+      "apply for credit",
+      "submit form",
+      "fill out",
+      "sign up",
+      "enroll"
+    ],
+    "answer": "The Credit Application page is the place to submit a preliminary request with business contact details and your self-reported credit score. Complete required fields, review both sets of documents, scroll to the end, choose I agree, and then check each acknowledgment. The proposed payment plan is not yet open for enrollment. This form does not run a credit check, approve credit, or activate an arbitration waiver.",
+    "links": [
+      [
+        "Credit Application form",
+        "credit-application.html"
+      ],
+      [
+        "Payment-plan price breakdown",
+        "custom-websites.html#payment-plan"
+      ],
+      [
+        "Application terms",
+        "credit-terms.html"
+      ]
+    ]
+  },
+  {
+    "id": "score",
+    "title": "Self-reported credit score",
+    "terms": [
+      "credit score",
+      "score",
+      "fico",
+      "vantagescore",
+      "no credit",
+      "no score",
+      "credit check",
+      "credit report",
+      "ssn"
+    ],
+    "answer": "The preliminary form requires your current self-reported personal credit score on a 300\u2013850 scale. It is unverified and does not authorize a bureau check or guarantee approval. Do not guess or send reports or identity documents. If you have no score, do not know it, or use a different scale, contact us to discuss your request.",
+    "links": [
+      [
+        "Self-reported score field",
+        "credit-application.html#credit-score"
+      ],
+      [
+        "Contact the company",
+        "contact.html"
+      ],
+      [
+        "Privacy notice",
+        "privacy.html"
+      ]
+    ]
+  },
+  {
+    "id": "privacy",
+    "title": "Privacy and information handling",
+    "terms": [
+      "privacy",
+      "private",
+      "confidential",
+      "data",
+      "information",
+      "secure",
+      "security of my information",
+      "delete my information"
+    ],
+    "answer": "The privacy notice describes the information collected and how Web3Forms, email, and hosting providers process it. Closing the confirmation or leaving the request page clears browser form data; it does not delete a submission already received by Web3Forms or the business inbox. Ask the business about access, correction, or deletion requests.",
+    "links": [
+      [
+        "Privacy notice",
+        "privacy.html"
+      ],
+      [
+        "Application request",
+        "credit-application.html"
+      ],
+      [
+        "Privacy questions",
+        "contact.html"
+      ]
+    ]
+  },
+  {
+    "id": "terms",
+    "title": "Application terms and authorization",
+    "terms": [
+      "terms",
+      "conditions",
+      "usage agreement",
+      "disclaimer",
+      "authorization",
+      "permission",
+      "consent"
+    ],
+    "answer": "Read the application-request terms and proposed credit authorization before submitting. The current acknowledgments concern reviewing notices and drafts; they do not authorize a credit check or activate an arbitration agreement.",
+    "links": [
+      [
+        "Application request terms",
+        "credit-terms.html"
+      ],
+      [
+        "Privacy notice",
+        "privacy.html"
+      ],
+      [
+        "Proposed dispute agreement",
+        "arbitration.html"
+      ]
+    ]
+  },
+  {
+    "id": "arbitration",
+    "title": "Proposed dispute resolution agreement",
+    "terms": [
+      "arbitration",
+      "arbitrate",
+      "dispute",
+      "court",
+      "jury",
+      "trial",
+      "settlement",
+      "lawsuit"
+    ],
+    "answer": "The proposed mutual dispute agreement explains customer-service discussions, arbitration, and preserved court exceptions. It remains a review draft. The preliminary form records acknowledgment of reading the draft, not a binding arbitration acceptance or court-trial waiver.",
+    "links": [
+      [
+        "Proposed dispute resolution agreement",
+        "arbitration.html"
+      ],
+      [
+        "Application request terms",
+        "credit-terms.html"
+      ]
+    ]
+  },
+  {
+    "id": "form-help",
+    "title": "Help with the form and agreement windows",
+    "terms": [
+      "cant submit",
+      "cannot submit",
+      "button disabled",
+      "button grey",
+      "button gray",
+      "not clickable",
+      "i agree",
+      "checkbox",
+      "check box",
+      "scroll",
+      "cancel window",
+      "form not working"
+    ],
+    "answer": "A disabled submit button means a required field or acknowledgment is incomplete. Enter the required contact details and a valid self-reported score. Open each review window, scroll its documents to the bottom, click I agree, and then check its box. Canceling or leaving the page clears the review state. If documents fail to load, cancel and reopen to retry. Contact us if the form still does not work; do not email sensitive documents.",
+    "links": [
+      [
+        "Application form",
+        "credit-application.html#project-form"
+      ],
+      [
+        "Application terms",
+        "credit-terms.html"
+      ],
+      [
+        "Contact for help",
+        "contact.html"
+      ]
+    ]
+  },
+  {
+    "id": "confirmation",
+    "title": "Confirmation numbers and fresh forms",
+    "terms": [
+      "confirmation",
+      "reference number",
+      "receipt",
+      "submitted",
+      "after submission",
+      "reset",
+      "blank form",
+      "close x",
+      "confirmation number"
+    ],
+    "answer": "After the submission service accepts your request, a window shows a confirmation number. Save it before closing X. Closing X clears the form and confirmation, and leaving and returning starts fresh. A confirmation records receipt by the submission service, not credit approval. Contact the business with your saved reference for follow-up.",
+    "links": [
+      [
+        "Application request",
+        "credit-application.html"
+      ],
+      [
+        "Follow up with the business",
+        "contact.html"
+      ]
+    ]
+  },
+  {
+    "id": "careers",
+    "title": "Careers and opportunities",
+    "terms": [
+      "careers",
+      "jobs",
+      "job",
+      "hiring",
+      "employment",
+      "work for you",
+      "openings"
+    ],
+    "answer": "Visit Careers for current opportunities. Availability is stated on that page.",
+    "links": [
+      [
+        "Careers",
+        "careers.html"
+      ]
+    ]
+  },
+  {
+    "id": "shortcut",
+    "title": "Save the website shortcut",
+    "terms": [
+      "shortcut",
+      "desktop icon",
+      "download icon",
+      "save website",
+      "home screen",
+      "bookmark"
+    ],
+    "answer": "The shortcut page explains how to save a desktop shortcut or add the website to your device for easy access.",
+    "links": [
+      [
+        "Save Apex to your device",
+        "save-apex.html"
+      ]
+    ]
   }
 ];
-  const normalize = value => value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const normalize = value => value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+    .replace(/[’']/g, '').replace(/pay\s+pal/g, 'paypal').replace(/web\s+site/g, 'website')
+    .replace(/\b(faqs)\b/g, 'faq').replace(/[^a-z0-9]+/g, ' ').trim();
+  // Specific intentions precede broad words such as "website", "credit", or "payment".
+  const ROUTES = [
+    ['form-help', /\b(cant submit|cannot submit|unable to submit|wont submit|button.*(?:disabled|grey|gray|click)|not clickable|i agree|check ?box|scroll|cancel window|form not working)\b/],
+    ['arbitration', /\b(arbitration|arbitrate|disputes?|courts?|jury|trial|lawsuit|settlement)\b/],
+    ['privacy', /\b(privacy|private|confidential|delete my (?:data|information)|data security|secure information|keep.*information)\b/],
+    ['terms', /\b(terms|conditions|disclaimer|usage agreement|authorization|permission|consent)\b/],
+    ['confirmation', /\b(confirmation|receipt|reference number|after submission|already submitted|reset|blank form|close x)\b/],
+    ['faq-cancel-care', /\b(refunds?|refundable|nonrefundable|proration|prorated)\b.*\b(care|maintenance|monthly)\b|\b(care|maintenance|monthly)\b.*\b(refunds?|refundable|proration)\b/],
+    ['faq-cancel-project', /\b(cancel|cancellation|refund|pause)\b.*\b(project|build)\b|\b(project|build)\b.*\b(cancel|refund|pause)\b/],
+    ['faq-cancel-care', /\b(cancel|cancellation|renewal|unsubscribe|stop paying for care)\b/],
+    ['score', /\b(credit score|fico|vantagescore|no score|dont know my score|credit check|credit report|ssn)\b/],
+    ['application', /\b(apply|application|fill (?:out|in)|sign up|enroll|credit form)\b/],
+    ['payment-plan', /\b(payment plan|pay.*monthly|monthly payments|pay.*over time|installments?|instalments?|financ(?:e|ing)|cant afford|cannot afford|grace|reinstatement|suspension|price breakdown|program cost)\b/],
+    ['examples', /\b(examples?|portfolio|samples?|previous work|show.*work|high desert|wall street|italian pickup)\b/],
+    ['careers', /\b(careers?|jobs?|hiring|employment|work for you|openings)\b/],
+    ['shortcut', /\b(shortcut|desktop icon|download icon|home screen|bookmark|save.*website)\b/],
+    ['about', /\b(about|history|team|founder|who are you|harvard|byu|credentials|university|qualifications)\b/],
+    ['home', /\b(home|homepage|main page|services|what do you do|what do you offer)\b/],
+    ['process', /\b(process|steps|how it works|how do we start|get started)\b/],
+    ['faq', /\b(faq|frequently asked questions|common questions)\b/],
+    ['faq-timeline', /\b(timeline|deadline|how long|weeks|turnaround|delivery|when.*ready)\b/],
+    ['faq-response', /\b(how quickly|respond|response|answer a request|reply)\b/],
+    ['faq-deposit', /\b(deposit|milestones?|upfront|balance|when do i pay|payment schedule|50 50)\b/],
+    ['faq-revisions', /\b(revisions?|rounds|feedback)\b/],
+    ['faq-results', /\b(google|rankings?|seo|leads|guarantee|index|indexing|indexed|placement|sitemap|search results)\b/],
+    ['payments', /\b(stripe|paypal|accept payments|take payments|checkout|apis?|integrations?)\b/],
+    ['ownership', /\b(ownership|own|keep|handover|source code|my files)\b/],
+    ['faq-editing', /\b(edit myself|edit.*myself|another developer|cms|editor)\b/],
+    ['automation', /\b(automation|automations|automate|workflow|software|portal|dashboard)\b/],
+    ['faq-materials', /\b(materials|provide|logo|copywriting|what.*send|what.*need from me)\b/],
+    ['faq-costs', /\b(domain|third party fees|processing fees|extra fees)\b/],
+    ['care', /\b(care|hosting|maintenance|updates|backups?|monitoring|security|support|rollover|roll over|unused|allowance|hours?|150)\b/],
+    ['improve', /\b(repair|fix|redesign|improve|broken|outdated)\b/],
+    ['contact', /\b(contact|email|phone|call|talk to|reach you|consultation|human|real person)\b/],
+    ['quote', /\b(price|pricing|cost|quote|budget|how much|1750)\b/],
+    ['payment-plan', /\b(credit)\b/]
+  ];
   function match(value) {
     const query = ` ${normalize(value)} `;
-
-    let preferred;
-    if (/\b(payment plan|installments?|instalments?|credit|financing|monthly payments|grace|reinstatement|suspension)\b/.test(query)) return [TOPICS.find(topic => topic.id === 'payment-plan')];
-    if (/\b(how quickly|respond|response|answer a request)\b/.test(query)) preferred = 'faq-response';
-    else if (/\b(faq|frequently asked questions)\b/.test(query)) preferred = 'faq';
-    else if (/\b(deposit|milestones?|upfront|balance|when do i pay|payment schedule)\b/.test(query)) preferred = 'faq-deposit';
-    else if (/\b(refunds?|refundable|nonrefundable|proration|prorated)\b/.test(query) && /\b(care|maintenance|service|monthly)\b/.test(query)) preferred = 'faq-cancel-care';
-    else if (/\b(cancel|cancellation|refund|pause)\b/.test(query) && /\b(project|build|refund|pause)\b/.test(query)) preferred = 'faq-cancel-project';
-    else if (/\b(cancel|cancellation|renewal)\b/.test(query)) preferred = 'faq-cancel-care';
-    else if (/\b(timeline|deadline|how long|weeks|turnaround|delivery)\b/.test(query)) preferred = 'faq-timeline';
-    else if (/\b(revisions?|rounds|feedback)\b/.test(query)) preferred = 'faq-revisions';
-    else if (/\b(google|rankings?|seo|leads|guarantee|index|indexing|indexed|placement|sitemap)\b/.test(query)) preferred = 'faq-results';
-    else if (/\b(stripe|paypal|payments?|checkout|apis?|integrations?)\b/.test(query)) preferred = 'payments';
-    else if (/\b(ownership|own|keep|handover)\b/.test(query)) preferred = 'ownership';
-    else if (/\b(automation|automations|automate|workflow|software|portal|dashboard)\b/.test(query)) preferred = 'automation';
-    else if (/\b(price|pricing|cost|quote|budget)\b/.test(query)) preferred = 'quote';
-    else if (/\b(care|hosting|maintenance|updates|backups?|monitoring|security|support|rollover|roll over|unused|allowance|hours?)\b/.test(query)) preferred = 'care';
-    else if (/\b(repair|fix|redesign|improve|broken)\b/.test(query)) preferred = 'improve';
-    if (preferred) return [TOPICS.find(topic => topic.id === preferred)];
-
-    return TOPICS.map(topic => ({ topic, score: topic.terms.reduce((score, term) => query.includes(` ${term} `) ? score + term.split(" ").length * 2 : score, 0) }))
+    for (const [id, pattern] of ROUTES) {
+      if (pattern.test(query)) {
+        const topic = TOPICS.find(topic => topic.id === id);
+        if (topic) return [topic];
+      }
+    }
+    return TOPICS.map(topic => ({ topic, score: topic.terms.reduce((score, term) => query.includes(` ${normalize(term)} `) ? score + term.split(/\s+/).length * 2 : score, 0) }))
       .filter(result => result.score).sort((a, b) => b.score - a.score).slice(0, 3).map(result => result.topic);
   }
   function element(tag, className, text) {
@@ -651,6 +1022,7 @@
   }
   function welcome() {
     const bubble = message("Hi! I can help you explore Apex Code Works California services, plan a project, or find contact information. Choose a starting point or type a question below.");
+    addLinks(bubble, [["Home and services", "index.html#services"], ["Website examples", "website-examples.html"], ["Credit Application", "credit-application.html"]]);
     for (const id of ["start", "quote", "contact"]) {
       const topic = TOPICS.find(item => item.id === id);
       bubble.append(button(topic.title, () => answer(topic.title, [topic]), "apex-chat-shortcut"));
@@ -661,12 +1033,12 @@
     message(question, "You");
     const normalized = normalize(question);
     const sensitive = /\b(sk-|AIza)[A-Za-z0-9_-]{12,}/.test(question);
-    const greeting = /^(hi|hello|hey|thanks|thank you)$/.test(normalized);
+    const greeting = /^(hi|hello|hey|thanks|thank you|good morning|good afternoon|good evening)$/.test(normalized);
     if (sensitive) {
       log.lastElementChild.querySelector("p").textContent = "[Possible API key hidden]";
-      message("Please keep API keys and sensitive information out of chat. Clear this chat if you entered sensitive information.");
+      addLinks(message("Please keep API keys and sensitive information out of chat. Clear this chat if you entered sensitive information."), [["Privacy notice", "privacy.html"], ["Contact the business", "contact.html"]]);
     } else if (greeting) {
-      message("Happy to help! Tell me what you want to find, or open Browse all topics.");
+      addLinks(message("Happy to help! Ask where to apply, see website examples, compare prices, or find care and project answers."), [["Services", "index.html#services"], ["Frequently asked questions", "faq.html"], ["Credit Application", "credit-application.html"]]);
     } else if (matches.length) {
       const bubble = message(matches[0].answer);
       addLinks(bubble, matches[0].links);
@@ -675,7 +1047,7 @@
         for (const topic of matches.slice(1)) bubble.append(button(topic.title, () => answer(topic.title, [topic]), "apex-chat-shortcut"));
       }
     } else {
-      message("I couldn't match that to an Apex topic. Try websites, improvements, care, Stripe, PayPal, automation, ownership, pricing, or contact. Browse all topics for the full directory.");
+      addLinks(message("I could not confidently match that request. Try phrases such as show me your work, where do I apply, explain monthly payments, cancel care, or contact a person."), [["Frequently asked questions", "faq.html"], ["Services", "index.html#services"], ["Contact a person", "contact.html"]]);
     }
     // Start at the answer's beginning instead of skipping to its last link.
     log.scrollTop = log.lastElementChild.offsetTop;
