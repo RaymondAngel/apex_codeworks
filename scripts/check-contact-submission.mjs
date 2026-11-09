@@ -19,7 +19,7 @@ function element() {
   };
 }
 
-async function scenario(fetch, provider = 'formsubmit') {
+async function scenario(fetch, provider = 'formsubmit', investor = false) {
   const fields = new Map(Object.entries({
     name: 'Test & company', email: 'test@example.com', phone: '',
     service: 'Other', budget: '', details: 'Line one\nDetails & ? # + ='
@@ -35,6 +35,7 @@ async function scenario(fetch, provider = 'formsubmit') {
   };
   let resets = 0;
   const form = element();
+  if (investor) form.attributes['data-inquiry-type'] = 'investor';
   form.querySelector = get;
   form.action = provider === 'web3forms'
     ? 'https://api.web3forms.com/submit'
@@ -105,3 +106,23 @@ assert.equal(web3Rejected.get('#inquiry-confirmation').open, false);
 assert.equal(web3Rejected.get('#email-fallback').hidden, false);
 assert.equal(web3Rejected.resets(), 0);
 console.log('PASS: failure preserves entries, fallback uses current safely encoded details and business recipient, return clears draft, success confirms and resets.');
+
+const investorAccepted = await scenario(async (url, options) => {
+  const payload = JSON.parse(options.body);
+  assert.match(payload.subject, /^Apex Code Works California investor application \[ACW-/);
+  assert.equal(payload.email, 'test@example.com');
+  assert.equal(payload.message, 'Line one\nDetails & ? # + =');
+  return { ok: true, json: async () => ({ success: true }) };
+}, 'web3forms', true);
+assert.equal(investorAccepted.get('#inquiry-confirmation').open, true);
+const investorFailed = await scenario(async () => { throw new TypeError('Failed to fetch'); }, 'web3forms', true);
+investorFailed.get('#email-draft-link').listeners.click();
+const investorDraft = new URL(investorFailed.get('#email-draft-link').href);
+assert.match(investorDraft.searchParams.get('subject'), /investor application/);
+assert.match(investorDraft.searchParams.get('body'), /Background and proposed partnership:/);
+const investorHtml = await fs.readFile(new URL('../investors.html', import.meta.url), 'utf8');
+const contactHtml = await fs.readFile(new URL('../contact.html', import.meta.url), 'utf8');
+assert.equal(investorHtml.match(/name="access_key" value="([^"]+)"/)[1], contactHtml.match(/name="access_key" value="([^"]+)"/)[1]);
+assert.match(investorHtml, /name="botcheck"/);
+assert.match(investorHtml, /id="email"[^>]+type="email"[^>]+required/);
+console.log('PASS: investor application uses existing recipient key, required email, spam trap, confirmation, and investor email fallback.');

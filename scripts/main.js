@@ -126,6 +126,8 @@ if (projectForm) {
   }
   const submitButton = projectForm.querySelector('[type="submit"]');
   const submitLabel = projectForm.getAttribute('data-submit-label') || 'Send project inquiry';
+  const investorInquiry = projectForm.getAttribute('data-inquiry-type') === 'investor';
+  const inquirySubject = investorInquiry ? 'Apex Code Works California investor application' : 'Apex Code Works California inquiry';
   const gatedSubmit = projectForm.getAttribute('data-gated-submit') === 'true';
   const formMessage = projectForm.querySelector('#form-message');
   const emailFallback = projectForm.querySelector('#email-fallback');
@@ -246,8 +248,8 @@ if (projectForm) {
     }
     const entries = new FormData(projectForm);
     const subject = inquiryReference
-      ? `Apex Code Works California inquiry [${inquiryReference}]`
-      : 'Apex Code Works California project inquiry';
+      ? `${inquirySubject} [${inquiryReference}]`
+      : investorInquiry ? inquirySubject : 'Apex Code Works California project inquiry';
     const body = [
       ...(inquiryReference ? [`Inquiry reference: ${inquiryReference}`] : []),
       `Name or company: ${entries.get('name') || ''}`,
@@ -257,7 +259,7 @@ if (projectForm) {
       `Service: ${entries.get('service') || 'Not specified'}`,
       `Budget (USD): ${String(entries.get('budget') || '').trim() || 'Not specified'}`,
       '',
-      'Project details:',
+      investorInquiry ? 'Background and proposed partnership:' : 'Project details:',
       String(entries.get('details') || ''),
       ...(gatedSubmit ? ['', acknowledgmentRecord(entries, inquiryReference, new Date().toISOString())] : []),
       '',
@@ -328,7 +330,7 @@ if (projectForm) {
         payload.details += '\n\n' + record;
       }
       const usesWeb3Forms = new URL(projectForm.action).hostname === 'api.web3forms.com';
-      const subject = `Apex Code Works California inquiry [${inquiryReference}]`;
+      const subject = `${inquirySubject} [${inquiryReference}]`;
       if (usesWeb3Forms) {
         payload.subject = subject;
         payload.message = payload.details;
