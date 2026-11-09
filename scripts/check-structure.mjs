@@ -35,6 +35,12 @@ for (const file of files) {
   const content = await fs.readFile(target);
   if (fragment && target.pathname.endsWith('.html')) assert(content.toString().includes(`id="${fragment}"`), file + ': broken anchor ' + link);
  }
+ for (const match of html.matchAll(/\bsrcset="([^"]+)"/g)) {
+  for (const candidate of match[1].split(',')) {
+   const src = candidate.trim().split(/\s+/)[0];
+   if (!/^https?:/.test(src)) await fs.access(new URL(src, root));
+  }
+ }
  if (!standalone) {
   assert(html.indexOf('<header') < html.indexOf('<main') && html.indexOf('<main') < html.indexOf('<footer'), file + ': landmark order');
   assert.match(html, /href="#main-content"/, file + ': missing skip link');

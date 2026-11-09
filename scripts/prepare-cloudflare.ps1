@@ -22,7 +22,10 @@ foreach ($folder in @('styles', 'scripts', 'images', 'icons', 'downloads')) {
     $destination = Join-Path $output $folder
     New-Item -ItemType Directory -Path $destination | Out-Null
     Get-ChildItem -LiteralPath (Join-Path $root $folder) -File | Where-Object {
-        $_.Extension -notin @('.ps1', '.mjs')
+        ($folder -eq 'scripts' -and $_.Extension -eq '.js') -or
+        ($folder -eq 'styles' -and $_.Name -in @('main.css', 'chatbot.css')) -or
+        ($folder -in @('images', 'icons') -and $_.Extension -in @('.webp', '.png', '.jpg', '.jpeg', '.svg', '.ico', '.gif')) -or
+        ($folder -eq 'downloads' -and $_.Extension -in @('.url', '.webloc'))
     } | Copy-Item -Destination $destination
 }
 
