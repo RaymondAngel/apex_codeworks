@@ -7,6 +7,120 @@
   const base = new URL("../", script.src);
   const TOPICS = [
   {
+    "id": "investors",
+    "title": "Investors and partnership applications",
+    "terms": [
+      "investor",
+      "investors",
+      "invest",
+      "investment",
+      "investing",
+      "partner",
+      "partners",
+      "partnership",
+      "strategic partner",
+      "funding",
+      "capital",
+      "back your company"
+    ],
+    "answer": "We welcome investors and strategic partners interested in helping Apex grow its website, software, and business automation work. Use the Investors page to introduce yourself. The application asks for your full name, required contact email, partnership interest, and background and proposed partnership. Phone and a potential investment amount or range in USD are optional. Include your organization, experience, goals, proposed contribution, desired role, and preferred timeline in your message. We review your application and reply at the email you provide. Applying starts a discussion; any investment or partnership requires separate review and a written agreement.",
+    "links": [
+      [
+        "Investor and partnership application",
+        "investors.html#project-form"
+      ],
+      [
+        "Investors overview",
+        "investors.html"
+      ],
+      [
+        "Contact Apex",
+        "contact.html"
+      ]
+    ]
+  },
+  {
+    "id": "investor-help",
+    "title": "Help submitting an investor application",
+    "terms": [
+      "investor form help",
+      "partnership application help"
+    ],
+    "answer": "On the Investors page, complete your full name, contact email, partnership interest, and background and proposed partnership. Phone and potential investment are optional. If you enter an amount or range, use USD and put the lower amount first. Enable JavaScript to submit. A confirmation number appears only after the submission service accepts the application. If submission cannot be confirmed, your entries stay available and an email draft option appears; review before resending to avoid duplicates. Do not send bank details, identity documents, passwords, or confidential financial records. Email Raymond.Angel.Developer@gmail.com if you need help.",
+    "links": [
+      [
+        "Return to investor application",
+        "investors.html#project-form"
+      ],
+      [
+        "Privacy notice",
+        "privacy.html"
+      ],
+      [
+        "Contact for help",
+        "contact.html"
+      ]
+    ]
+  },
+  {
+    "id": "application-guide",
+    "title": "Choose the right application or inquiry",
+    "terms": [
+      "forms",
+      "applications",
+      "where do i apply",
+      "which form",
+      "submit an application"
+    ],
+    "answer": "Choose the form that fits your goal: Investors for investment or strategic partnership introductions; Contact for website projects, improvements, care, or custom software; Credit Application for a preliminary payment-plan request. The credit request does not authorize a credit check, approve credit, or enroll you in a payment plan. Careers currently lists no available opportunities.",
+    "links": [
+      [
+        "Investors and partners",
+        "investors.html#project-form"
+      ],
+      [
+        "Project inquiry",
+        "contact.html#project-form"
+      ],
+      [
+        "Credit application request",
+        "credit-application.html#project-form"
+      ],
+      [
+        "Career opportunities",
+        "careers.html"
+      ]
+    ]
+  },
+  {
+    "id": "submission-help",
+    "title": "Submission errors and email fallback",
+    "terms": [
+      "form failed",
+      "submission error",
+      "not received",
+      "email fallback",
+      "timeout",
+      "rate limit",
+      "not sending"
+    ],
+    "answer": "If a form cannot confirm submission, it preserves your entries and offers an email draft to Raymond.Angel.Developer@gmail.com. Check whether the request was received before resending. Save any displayed reference number for follow-up. Opening an email draft does not send it: review it and press Send in your email app. A confirmation number means the submission service accepted the request; it does not guarantee inbox delivery, an approved partnership, or credit approval.",
+    "links": [
+      [
+        "Contact Apex",
+        "contact.html"
+      ],
+      [
+        "Investor application",
+        "investors.html#project-form"
+      ],
+      [
+        "Credit application request",
+        "credit-application.html#project-form"
+      ]
+    ]
+  },
+  {
     "id": "start",
     "title": "Business websites",
     "terms": [
@@ -231,7 +345,7 @@
       "turnaround",
       "delivery"
     ],
-    "answer": "A straightforward five-page site typically takes 2\u20134 weeks after the initial payment and required content are received and the scope is approved. This is an estimate, not a guaranteed deadline. We confirm a schedule before starting; delayed materials, feedback, approvals, third-party services, or added work can move the launch date.",
+    "answer": "A straightforward five-page site typically takes 2–4 weeks after the initial payment and required content are received and the scope is approved. This is an estimate, not a guaranteed deadline. We confirm a schedule before starting; delayed materials, feedback, approvals, third-party services, or added work can move the launch date.",
     "links": [
       [
         "Read the FAQ",
@@ -606,7 +720,7 @@
       "university",
       "qualifications"
     ],
-    "answer": "Read about the company foundation, university-issued credentials, development standards, and approach to working with businesses.",
+    "answer": "Apex Code Works California builds practical websites for local businesses, with a foundation in university-issued credentials from Harvard University and Brigham Young University–Idaho. The company emphasizes creativity, clear communication, accessible design, maintainable code, and useful solutions shaped around each client. Performance and search improvements are goals; Google indexing, ranking, traffic, and sales are not guaranteed.",
     "links": [
       [
         "About Apex Code Works California",
@@ -684,7 +798,7 @@
       "credit report",
       "ssn"
     ],
-    "answer": "The preliminary form requires your current self-reported personal credit score on a 300\u2013850 scale. It is unverified and does not authorize a bureau check or guarantee approval. Do not guess or send reports or identity documents. If you have no score, do not know it, or use a different scale, contact us to discuss your request.",
+    "answer": "The preliminary form requires your current self-reported personal credit score on a 300–850 scale. It is unverified and does not authorize a bureau check or guarantee approval. Do not guess or send reports or identity documents. If you have no score, do not know it, or use a different scale, contact us to discuss your request.",
     "links": [
       [
         "Self-reported score field",
@@ -713,7 +827,7 @@
       "security of my information",
       "delete my information"
     ],
-    "answer": "The privacy notice describes the information collected and how Web3Forms, email, and hosting providers process it. Closing the confirmation or leaving the request page clears browser form data; it does not delete a submission already received by Web3Forms or the business inbox. Ask the business about access, correction, or deletion requests.",
+    "answer": "The Privacy Notice explains how submitted information is used to respond to requests and how Web3Forms, email, and hosting providers process it. Clearing chat or resetting a form does not delete a submission already received by the service or business inbox. Contact Apex about access, correction, or deletion requests. Keep passwords, identity documents, bank details, and confidential financial records out of chat and inquiry forms.",
     "links": [
       [
         "Privacy notice",
@@ -799,7 +913,7 @@
       "cancel window",
       "form not working"
     ],
-    "answer": "A disabled submit button means a required field or acknowledgment is incomplete. Enter the required contact details and a valid self-reported score. Open each review window, scroll its documents to the bottom, click I agree, and then check its box. Canceling or leaving the page clears the review state. If documents fail to load, cancel and reopen to retry. Contact us if the form still does not work; do not email sensitive documents.",
+    "answer": "Check the required fields and use a valid contact email. Project and investor forms also validate an optional USD amount or range. Only the credit-request form requires a self-reported score and document acknowledgments: open each review window, scroll to the bottom, choose I agree, then check its box. JavaScript must be enabled to submit. If sending fails, keep any reference number and use the email fallback or contact Apex for help.",
     "links": [
       [
         "Application form",
@@ -829,7 +943,7 @@
       "close x",
       "confirmation number"
     ],
-    "answer": "After the submission service accepts your request, a window shows a confirmation number. Save it before closing X. Closing X clears the form and confirmation, and leaving and returning starts fresh. A confirmation records receipt by the submission service, not credit approval. Contact the business with your saved reference for follow-up.",
+    "answer": "After the submission service accepts a project inquiry, investor application, or credit request, a window shows a confirmation number. Save it for follow-up. A confirmation means the submission service accepted the request; it does not guarantee inbox delivery, credit approval, or an accepted partnership. The credit-request page clears its form and confirmation when you close the window or leave the page. Other inquiry forms reset after success and clear previous confirmations when restored with browser Back or Forward.",
     "links": [
       [
         "Application request",
@@ -853,7 +967,7 @@
       "work for you",
       "openings"
     ],
-    "answer": "Visit Careers for current opportunities. Availability is stated on that page.",
+    "answer": "There are currently no available opportunities listed on the Careers page. Check that page for future openings.",
     "links": [
       [
         "Careers",
@@ -883,9 +997,16 @@
 ];
   const normalize = value => value.normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
     .replace(/[’']/g, '').replace(/pay\s+pal/g, 'paypal').replace(/web\s+site/g, 'website')
-    .replace(/\b(faqs)\b/g, 'faq').replace(/[^a-z0-9]+/g, ' ').trim();
+    .replace(/\b(faqs)\b/g, 'faq').replace(/\binvesters?\b/g, 'investor').replace(/\bpartnerships\b/g, 'partnership').replace(/[^a-z0-9]+/g, ' ').trim();
   // Specific intentions precede broad words such as "website", "credit", or "payment".
   const ROUTES = [
+    ['investor-help', /\b(investors?|investments?|investing|partners?|partnership)\b.*\b(help|submit|sending|disabled|error|fail|failed|cant|cannot|unable|requirements|required|fields)\b|\b(help|submit|sending|disabled|error|fail|failed|cant|cannot|unable|requirements|required|fields)\b.*\b(investors?|investments?|partners?|partnership)\b/],
+    ['submission-help', /\b(failed to fetch|connection error|submission error|email fallback|email draft|not received|timeout|timed out|rate limit|not sending)\b/],
+    ['privacy', /\b(investors?|partners?|partnership)\b.*\b(privacy|private|data|confidential)\b/],
+    ['confirmation', /\b(investors?|partners?|partnership)\b.*\b(confirmation|reference|receipt|already submitted)\b/],
+    ['investors', /\b(investors?|investments?|investing|invest|partners?|partnership|funding|capital|back your company)\b/],
+    ['application-guide', /^(?:where do i apply|how do i apply|apply|application|applications|forms|which form|submit an application)$/],
+    ['contact', /\b(project|website|redesign|software)\b.*\b(inquiry|enquiry|application form|apply)\b|\b(apply|application form)\b.*\b(project|redesign|software)\b/],
     ['form-help', /\b(cant submit|cannot submit|unable to submit|wont submit|button.*(?:disabled|grey|gray|click)|not clickable|i agree|check ?box|scroll|cancel window|form not working)\b/],
     ['arbitration', /\b(arbitration|arbitrate|disputes?|courts?|jury|trial|lawsuit|settlement)\b/],
     ['privacy', /\b(privacy|private|confidential|delete my (?:data|information)|data security|secure information|keep.*information)\b/],
@@ -895,10 +1016,10 @@
     ['faq-cancel-project', /\b(cancel|cancellation|refund|pause)\b.*\b(project|build)\b|\b(project|build)\b.*\b(cancel|refund|pause)\b/],
     ['faq-cancel-care', /\b(cancel|cancellation|renewal|unsubscribe|stop paying for care)\b/],
     ['score', /\b(credit score|fico|vantagescore|no score|dont know my score|credit check|credit report|ssn)\b/],
+    ['careers', /\b(careers?|jobs?|hiring|employment|work for you|openings)\b/],
     ['application', /\b(apply|application|fill (?:out|in)|sign up|enroll|credit form)\b/],
     ['payment-plan', /\b(payment plan|pay.*monthly|monthly payments|pay.*over time|installments?|instalments?|financ(?:e|ing)|cant afford|cannot afford|grace|reinstatement|suspension|price breakdown|program cost)\b/],
     ['examples', /\b(examples?|portfolio|samples?|previous work|show.*work|high desert|wall street|italian pickup)\b/],
-    ['careers', /\b(careers?|jobs?|hiring|employment|work for you|openings)\b/],
     ['shortcut', /\b(shortcut|desktop icon|download icon|home screen|bookmark|save.*website)\b/],
     ['about', /\b(about|history|team|founder|who are you|harvard|byu|credentials|university|qualifications)\b/],
     ['home', /\b(home|homepage|main page|services|what do you do|what do you offer)\b/],
@@ -922,7 +1043,7 @@
     ['payment-plan', /\b(credit)\b/]
   ];
   function match(value) {
-    const query = ` ${normalize(value)} `;
+    const query = normalize(value);
     for (const [id, pattern] of ROUTES) {
       if (pattern.test(query)) {
         const topic = TOPICS.find(topic => topic.id === id);
@@ -980,7 +1101,7 @@
   minimize.title = "Minimize chat";
   controls.append(expand, minimize);
   header.append(heading, controls);
-  const intro = element("p", "apex-chat-intro", "Ask about Apex services or find a page. Automated site guide; no live agent.");
+  const intro = element("p", "apex-chat-intro", "Search services, website examples, investor partnerships, applications, and FAQs. Automated guide; no live agent.");
   const log = element("div", "apex-chat-log");
   log.setAttribute("role", "log");
   log.setAttribute("aria-label", "Chat messages");
@@ -1001,14 +1122,14 @@
   input.maxLength = 300;
   input.required = true;
   input.autocomplete = "off";
-  input.placeholder = "Try: Can you redesign my website?";
+  input.placeholder = "Try: How do I become an investor?";
   const row = element("div", "apex-chat-input-row");
   const send = element("button", "apex-chat-send", "Send");
   send.type = "submit";
   row.append(input, send);
   form.append(label, row);
   const footer = element("div", "apex-chat-footer");
-  footer.append(element("span", "", "Browser-only · No AI fees"), button("Clear chat", () => { log.replaceChildren(); welcome(); log.scrollTop = 0; input.focus(); }));
+  footer.append(element("span", "", "Search stays in this browser"), button("Clear chat", () => { log.replaceChildren(); welcome(); log.scrollTop = 0; input.focus(); }));
   panel.append(header, intro, log, topicDetails, form, footer);
   root.append(panel, toggle);
   document.body.append(root);
@@ -1021,9 +1142,9 @@
     return bubble;
   }
   function welcome() {
-    const bubble = message("Hi! I can help you explore Apex Code Works California services, plan a project, or find contact information. Choose a starting point or type a question below.");
-    addLinks(bubble, [["Home and services", "index.html#services"], ["Website examples", "website-examples.html"], ["Credit Application", "credit-application.html"]]);
-    for (const id of ["start", "quote", "contact"]) {
+    const bubble = message("Hi! I can help you find website services, project examples, investor and partnership applications, payment-plan information, and contact details. Choose a topic or ask a question. Please keep sensitive information out of chat.");
+    addLinks(bubble, [["Home and services", "index.html#services"], ["Website examples", "website-examples.html"], ["Investors and partners", "investors.html"], ["Credit application request", "credit-application.html"]]);
+    for (const id of ["investors", "application-guide", "quote", "contact"]) {
       const topic = TOPICS.find(item => item.id === id);
       bubble.append(button(topic.title, () => answer(topic.title, [topic]), "apex-chat-shortcut"));
     }
@@ -1038,7 +1159,7 @@
       log.lastElementChild.querySelector("p").textContent = "[Possible API key hidden]";
       addLinks(message("Please keep API keys and sensitive information out of chat. Clear this chat if you entered sensitive information."), [["Privacy notice", "privacy.html"], ["Contact the business", "contact.html"]]);
     } else if (greeting) {
-      addLinks(message("Happy to help! Ask where to apply, see website examples, compare prices, or find care and project answers."), [["Services", "index.html#services"], ["Frequently asked questions", "faq.html"], ["Credit Application", "credit-application.html"]]);
+      addLinks(message("Happy to help! Try “become an investor,” “show website examples,” “payment plan,” “website care,” or “which form.”"), [["Services", "index.html#services"], ["Frequently asked questions", "faq.html"], ["Credit Application", "credit-application.html"]]);
     } else if (matches.length) {
       const bubble = message(matches[0].answer);
       addLinks(bubble, matches[0].links);
@@ -1047,7 +1168,7 @@
         for (const topic of matches.slice(1)) bubble.append(button(topic.title, () => answer(topic.title, [topic]), "apex-chat-shortcut"));
       }
     } else {
-      addLinks(message("I could not confidently match that request. Try phrases such as show me your work, where do I apply, explain monthly payments, cancel care, or contact a person."), [["Frequently asked questions", "faq.html"], ["Services", "index.html#services"], ["Contact a person", "contact.html"]]);
+      addLinks(message("I could not find a clear match. Try “investor application,” “website examples,” “project inquiry,” “credit application,” “monthly payments,” or “contact a person.” You can also browse all topics above."), [["Frequently asked questions", "faq.html"], ["Services", "index.html#services"], ["Contact a person", "contact.html"]]);
     }
     // Start at the answer's beginning instead of skipping to its last link.
     log.scrollTop = log.lastElementChild.offsetTop;

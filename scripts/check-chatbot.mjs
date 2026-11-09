@@ -5,6 +5,23 @@ const source=await fs.readFile(new URL('chatbot.js',import.meta.url),'utf8');
 const context={};
 vm.runInNewContext(source.slice(source.indexOf('  const TOPICS'),source.indexOf('  function element'))+';this.topics=TOPICS;this.match=match;',context);
 const cases=[
+ ['How do I apply for a job?','careers'],
+ ['Apply for website redesign','contact'],
+ ['How can I become an investor?','investors'],
+ ['Apply to partner with you','investors'],
+ ['Investers application','investors'],
+ ['Tell me about strategic partnerships','investors'],
+ ['Investment opportunities and funding','investors'],
+ ['Investor application required fields','investor-help'],
+ ['I cannot submit my partnership application','investor-help'],
+ ['How do you handle investor privacy?','privacy'],
+ ['Investor confirmation number','confirmation'],
+ ['Where do I apply?','application-guide'],
+ ['Which form','application-guide'],
+ ['Project inquiry','contact'],
+ ['The form says connection error','submission-help'],
+ ['Open my email draft','submission-help'],
+
  ['Take me home','home'],['What services do you offer?','home'],
  ['Show me your work','examples'],['High Desert Development','examples'],['Wall Street Watchers','examples'],['Italian Pickup','examples'],
  ['Tell me about your qualifications','about'],['How does the process work?','process'],
